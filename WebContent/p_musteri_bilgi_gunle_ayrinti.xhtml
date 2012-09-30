@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Müşteri Bilgi Güncelleme Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/p_musteri_template.xhtml">
+
+			<ui:define name="search-form">
+				<p:growl id="growl" showDetail="true" />			
+				<p:panel header="Not: Güncelleme yapabilmek için şu anki şifrenizi girmeniz gerekmektedir:
+					Güncellenecek Müşteri Bilgileri" footer="">
+					
+					<h:panelGrid columns="2">
+						<h:outputText value="ID: " />
+			            <h:outputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.id}" />
+						
+			            <h:outputText value="Adı: " />
+			            <h:inputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.adi}" required="true" 
+			            	requiredMessage="Müşteri adını boş bırakamazsınız"/>
+						
+			            <h:outputText value="Soyadı: " />
+			            <h:inputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.soyadi}" required="true" 
+			            	requiredMessage="Müşteri soyadını boş bırakamazsınız"/>
+						
+			            <h:outputText value="Üye Adı: " />
+			            <h:inputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.uyeAdi}" required="true" 
+			            	requiredMessage="Müşteri üye adını boş bırakamazsınız"/>
+						
+			            <!--<h:outputText value="Şifresi: " />
+			            <h:inputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.sifre}" required="true" 
+			            	requiredMessage="Müşteri şifresini boş bırakamazsınız"/>-->
+																	
+			            <h:outputText value="Mail: " />
+			            <h:inputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.mail}" required="true" 
+			            	requiredMessage="Müşteri mailini boş bırakamazsınız"/>
+											
+			            <h:outputText value="Web: " />
+			            <h:inputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.web}" required="true"
+			            	requiredMessage="Müşteri adresini boş bırakamazsınız"/>
+						
+			            <h:commandLink value="Bu Müşteriyi günle" update="musteriTable" action="#{musteriBilgiGunleBean.musteriGunle}">
+			                <f:param name="gunlenecekMusteriId" value="#{musteriBilgiGunleBean.gunlenecekMusteri.id}" />
+			            </h:commandLink>
+		            </h:panelGrid>
+				</p:panel>		
+				
+	</ui:define>
+
+</ui:composition>
+
+</h:body>
+</html>

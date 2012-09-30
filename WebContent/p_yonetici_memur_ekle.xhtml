@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memurları Listesi Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/p_yonetici_template.xhtml">
+		<ui:define name="search-form">
+					
+				
+				
+					
+				<p:panel header="Yeni banka memuru ekle">
+					<h:panelGrid columns="2">
+					
+						<h:outputLabel value="Yeni memurun adı : *" for="txt_title"></h:outputLabel>
+						<h:inputText id="txt_title" value="#{bankaMemuruEkleBean.eklenecekBankaMemuru.bankaMemuruAdi}" required="true" 
+							requiredMessage="Memur adını boş bırakamazsınız" />
+						
+						<h:outputLabel value="Yeni memurun soyadı : *" for="txt_soyad"></h:outputLabel>
+						<h:inputText id="txt_soyad" required="true" value="#{bankaMemuruEkleBean.eklenecekBankaMemuru.bankaMemuruSoyadi}" 
+							requiredMessage="Memur soyadını boş bırakamazsınız" />
+						
+						<h:outputLabel value="Yeni memurun tarihi : *" for="txt_author"></h:outputLabel>
+						<h:inputText id="txt_author" required="true" value="#{bankaMemuruEkleBean.eklenecekBankaMemuru.bankaMemuruBaslangicTarihi}" 
+							requiredMessage="Memur başlangıç tarihini boş bırakamazsınız" />
+						
+						<h:outputLabel value="Yeni memurun üye adı : *" for="txt_uyeAdi"></h:outputLabel>
+						<h:inputText id="txt_uyeAdi" required="true" value="#{bankaMemuruEkleBean.eklenecekBankaMemuru.bankaMemuruUyeAdi}" 
+							requiredMessage="Memurun üye adını boş bırakamazsınız" />
+						
+						<h:outputLabel value="Yeni memurun şifresi : *" for="txt_sifre"></h:outputLabel>
+						<h:inputText id="txt_sifre" required="true" value="#{bankaMemuruEkleBean.eklenecekBankaMemuru.bankaMemuruSifre}" 
+							requiredMessage="Memurun şifresini boş bırakamazsınız" />
+						
+						<h:outputLabel value="Yeni memurun mail : *" for="txt_mail"></h:outputLabel>
+						<h:inputText id="txt_mail" required="true" value="#{bankaMemuruEkleBean.eklenecekBankaMemuru.bankaMemuruMail}" 
+							requiredMessage="Memur mailini boş bırakamazsınız" />
+						
+						<h:outputLabel value="Yeni memurun telefon : *" for="txt_telefon"></h:outputLabel>
+						<h:inputText id="txt_telefon" required="true" value="#{bankaMemuruEkleBean.eklenecekBankaMemuru.bankaMemuruTelefon}" 
+							requiredMessage="Memurun telefonunu boş bırakamazsınız" />
+						
+						<h:outputLabel value="Şubesi : *"></h:outputLabel>
+						
+						<h:selectOneMenu id="subeler" value="#{bankaMemuruEkleBean.selectedSube.subeId}">
+							<!-- <f:selectItem itemLabel="Select Model" itemValue="" /> -->
+							<f:selectItems value="#{bankaMemuruEkleBean.subeler}" var="sube" itemLabel="#{sube.subeAdi}" itemValue="#{sube.subeId}"/>
+						</h:selectOneMenu>
+						
+						<p:commandButton value="Ekle" update="bankaMemuruTable" action="#{bankaMemuruEkleBean.yeniBankaMemuruEkle}" >
+							<p:collector value="#{bankaMemuruEkleBean.eklenecekBankaMemuru}" addTo="#{bankaMemuruEkleBean.bankaMemurlari}" />
+						</p:commandButton>
+						
+						<p:commandButton value="Temizle" type="reset"/>
+						
+						<h:commandLink value="Deneme" action="#{bankaMemuruEkleBean.deneme}"/>	
+							
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:ajaxStatus style="width:16px;height:16px;">
+					<f:facet name="start">
+						<h:graphicImage value="../design/ajaxloading.gif" />
+					</f:facet>
+					
+					<f:facet name="complete">
+						<h:outputText value="" />
+					</f:facet>
+				</p:ajaxStatus>
+				
+				<p:outputPanel id="bankaMemuruTable">
+					<p:growl id="growl" showDetail="true" />
+					<p:dataTable var="bankaMemuru" value="#{bankaMemuruEkleBean.bankaMemurlari}" paginator="true" rows="10">
+	                 
+				        <f:facet name="header">
+				            Banka Şubelerinin Listesi
+				        </f:facet>
+				
+						<p:column sortBy="#{bankaMemuru.bankaMemuruId}">
+				            <f:facet name="header">
+				                <h:outputText value="Memur ID" />
+				            </f:facet>
+				            <h:outputText value="#{bankaMemuru.bankaMemuruId}" />
+				        </p:column>
+				
+				        <p:column sortBy="#{bankaMemuru.bankaMemuruAdi}">
+				            <f:facet name="header">
+				                <h:outputText value="Memur Adı" />
+				            </f:facet>
+				            <h:outputText value="#{bankaMemuru.bankaMemuruAdi}" />
+				        </p:column>
+				
+				        <p:column sortBy="#{bankaMemuru.bankaMemuruBaslangicTarihi}">
+				            <f:facet name="header">
+				                <h:outputText value="Başlangıç tarihi" />
+				            </f:facet>
+				            <h:outputText value="#{bankaMemuru.bankaMemuruBaslangicTarihi}" />
+				        </p:column>
+				        
+				        <p:column sortBy="#{bankaMemuru.sube.subeAdi}">
+				            <f:facet name="header">
+				                <h:outputText value="Çalıştığı şube adi" />
+				            </f:facet>
+				            <h:outputText value="#{bankaMemuru.sube.subeAdi}" />
+				        </p:column>
+				        
+				        <p:column sortBy="#{bankaMemuru.sube.subeSehir}">
+				            <f:facet name="header">
+				                <h:outputText value="Çalıştığı şube şehri" />
+				            </f:facet>
+				            <h:outputText value="#{bankaMemuru.sube.subeSehir}" />
+				        </p:column>
+				        
+				        <p:column style="width:32px">
+			            <p:commandButton update="display" oncomplete="carDialog.show()"
+			                    image="ui-icon ui-icon-search">
+			                <f:setPropertyActionListener value="#{bankaMemuru}"
+			                    target="#{bankaMemuruEkleBean.selectedBankaMemuru}" />
+			            </p:commandButton>
+			        	</p:column>
+			        
+				    </p:dataTable>
+					
+				</p:outputPanel>
+				
+		</ui:define>
+		<ui:define name="dialogWindow">
+		
+		<p:dialog header="Banka memuru ayrıntısı" widgetVar="carDialog" resizable="false" width="200" showEffect="explode" hideEffect="explode">
+	
+	        <h:panelGrid id="display" columns="2" cellpadding="4">
+	
+	
+	            <h:outputText value="ID: " />
+	            <h:outputText value="#{bankaMemuruEkleBean.selectedBankaMemuru.bankaMemuruId}"/>
+	
+	            <h:outputText value="Adı: " />
+	            <h:outputText value="#{bankaMemuruEkleBean.selectedBankaMemuru.bankaMemuruAdi}"/>
+	
+	            <h:outputText value="Başlangıç tarihi: " />
+	            <h:outputText value="#{bankaMemuruEkleBean.selectedBankaMemuru.bankaMemuruBaslangicTarihi}"/>
+	            
+	            <h:outputText value="Şubesi: " />
+	            <h:outputText value="#{bankaMemuruEkleBean.selectedBankaMemuru.sube.subeAdi}"/>
+	            
+	            <h:outputText value="Şube şehri: " />
+	            <h:outputText value="#{bankaMemuruEkleBean.selectedBankaMemuru.sube.subeSehir}"/>
+	        </h:panelGrid>
+	    </p:dialog>
+	    
+	    </ui:define>
+	</ui:composition>
+    
+</h:body>
+</html>

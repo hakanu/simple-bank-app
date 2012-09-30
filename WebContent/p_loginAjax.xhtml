@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.prime.com.tr/ui">
+		
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Internet Bankacılığı Uygulaması</title>
+		<!-- <link type="text/css" rel="stylesheet" href="./css/start/skin.css"/> -->
+		<!-- <link type="text/css" rel="stylesheet" href="./css/dot-luv/skin.css"/> -->
+		<link type="text/css" rel="stylesheet" href="./css/trontastic/skin.css"/>
+		
+    </h:head>
+    <h:body styleClass="centered"> 
+        <!-- <div align="center">	</div> -->
+	<h:form id="genelForm">
+		<div align="center">
+			<p:graphicImage value="/images/banka/son.png" />
+			<p:menubar>
+				<p:submenu>
+					<f:facet name="label">
+						<p:menuitem value="Ana Sayfa" url="index.jsp" />
+					</f:facet>
+				</p:submenu>
+	
+				<p:submenu>
+					<f:facet name="label">
+						<p:menuitem value="Hakkında" url="p_about.jsf" />
+					</f:facet>
+				</p:submenu>
+	
+				<p:submenu>
+					<f:facet name="label">
+						<p:menuitem value="Nasıl kullanılır?" url="p_how_to_use.jsf" />
+					</f:facet>
+				</p:submenu>
+	
+				<p:submenu>
+					<f:facet name="label">
+						<p:menuitem value="Şubeler" url="p_subeler.jsf" />
+					</f:facet>
+				</p:submenu>
+	
+			</p:menubar>
+		</div>
+		<p />
+		<p />
+		<p />
+
+		<p:growl id="growl" showDetail="true" />
+
+		<div align="center">
+		<p:layout style="width:1000px;height:1000px;">
+			<p:layoutUnit position="right" width="250" resizable="true"
+				minWidth="50" maxWidth="200">
+				<p:panel id="panel" header="Kullanıcı Girişi"
+					style="margin-bottom:10px;">
+					<p:messages />
+					<h:panelGrid columns="3">
+						<h:outputLabel for="uyeAdi" value="Kullanıcı adı: *" />
+						<h:inputText id="uyeAdi" value="#{login.customerId}"
+							label="uyeAdi">
+							<f:validateLength minimum="2" />
+						</h:inputText>
+						<p:message for="uyeAdi" />
+
+						<h:outputLabel for="sifre" value="Şifre: *" />
+						<!-- <h:inputSecret id="sifre" value="#{login.password}" label="Şifre" inputType="hidden"/>  -->
+
+						<p:keyboard value="#{login.password}" label="Şifre" id="sifre"
+							password="true" />
+
+						<p:message for="sifre" />
+					</h:panelGrid>
+				</p:panel>
+
+				<p:commandButton value="Giriş yap" action="#{login.checkUserLogin}"
+					ajax="false">
+
+				</p:commandButton>
+
+				<p:commandButton value="Yeni kullanıcı kaydı"
+					action="p_user_register.jsf" ajax="false" />
+
+				<p:commandButton value="Şifremi unuttum"
+					action="p_musteri_sifremi_unuttum.jsf" ajax="false" />
+
+				<!-- <p:panel><h3>Her şey daha kolay</h3></p:panel> -->
+
+				<h2><h:outputText value="#{login.message}" id="ajaxMessage"
+					rendered="#{login.renderState}" /></h2>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+				<p:panel>
+					<h:outputLabel
+						value="Internet Bankacılığı Uygulaması'na hoşgeldiniz" />
+					<p />
+					<h:outputLabel value="#{messageBean.globalMessage}" />
+				</p:panel>
+				<!--  <p:media value="/media/banka_banner_deneme.swf" width="750" height="400" player="flash"/> -->
+				<p:media value="/media/banka_banner_deneme.swf" width="750" height="400" player="flash"/>
+			</p:layoutUnit>
+			
+		</p:layout>
+		</div>
+		<div align="center">	
+			<h>BBM 2011©</h><p/>
+			<h>Hakan UYSAL</h><p/>
+			<h>Kadir Tuna</h><p/>
+			</div>
+	</h:form>
+</h:body>
+</html>

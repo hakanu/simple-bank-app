@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memuru Ana Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_yonetici_template.xhtml">
+		<ui:define name="search-form">
+
+				<p:growl id="growl" showDetail="true" />
+				<p:panel header="Yeni Müşteri Ekle">
+					<h:messages errorClass="error"/>
+					<h:panelGrid columns="2">
+						<h:outputText value="Müşteri Adı *" />
+						<h:inputText required="true" label="Ad" value="#{bankaMemuruMusteriEkleBean.musteri.adi}" 
+							requiredMessage="Müşteri adını boş bırakamazsınız"/>
+						
+						<h:outputText value="Müşteri Soyadı: *" />
+						<h:inputText required="true" label="Soyad" value="#{bankaMemuruMusteriEkleBean.musteri.soyadi}" 
+							requiredMessage="Müşteri soyadını boş bırakamazsınız"/>
+						
+						<h:outputText value="TC Kimlik No: *" />
+						<h:inputText required="true" label="TC Kimlik No" value="#{bankaMemuruMusteriEkleBean.musteri.tckimlik}" 
+							requiredMessage="Müşteri soyadını boş bırakamazsınız">
+							<f:validateLength minimum="11" maximum="11"/> 
+						</h:inputText>
+						
+						<h:outputText value="Telefon: *" />
+						<h:inputText required="true" label="Telefon" value="#{bankaMemuruMusteriEkleBean.musteri.telefon}" 
+							requiredMessage="Müşteri soyadını boş bırakamazsınız">
+							<f:validateLength minimum="8"/> 
+						</h:inputText>
+						
+						<!-- <h:outputText value="Cinsiyet(E/K): *" />
+						<h:inputText required="true" label="Cinsiyet" value="#{bankaMemuruMusteriEkleBean.musteri.cinsiyet}" 
+							requiredMessage="Müşteri soyadını boş bırakamazsınız">
+							<f:validateLength maximum="1" /> 
+						</h:inputText> -->
+						
+						<h:outputText value="Yeni Üye Adı: *" />
+						<h:inputText required="true" label="uyeAd" value="#{bankaMemuruMusteriEkleBean.musteri.uyeAdi}" 
+							requiredMessage="Üye adını boş bırakamazsınız"/>
+						
+						<h:outputText value="Yeni Üye Şifresi: *" />
+						<h:inputSecret required="true" label="sifre" value="#{bankaMemuruMusteriEkleBean.musteri.sifre}" 
+							requiredMessage="Şifreyi boş bırakamazsınız"/>
+						
+						<h:outputText value="Müşterinin Yaşı: " />
+						<h:inputText required="true" label="Yas" value="#{bankaMemuruMusteriEkleBean.musteri.yas}" 
+							requiredMessage="Müşterinin yaşını boş bırakamazsınız"/>
+						
+						<h:outputText value="Müşteri E-mail Adresi: *" />
+						<h:inputText required="true" label="Email" value="#{bankaMemuruMusteriEkleBean.musteri.mail}" 
+							requiredMessage="Müşterinin emailn adresini boş bırakamazsınız"/>
+						
+						<h:outputText value="Adres: *" />
+						<h:inputText label="Web" value="#{bankaMemuruMusteriEkleBean.musteri.web}" required="true"
+							requiredMessage="Müşterinin adresini boş bırakamazsınız"/>
+						
+						<h:commandButton value="Submit" action="#{bankaMemuruMusteriEkleBean.save}"/>
+						
+						<p:commandButton value="Temizle" type="reset"/>
+						
+						
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:ajaxStatus style="width:16px;height:16px;">
+					<f:facet name="start">
+						<h:graphicImage value="../design/ajaxloading.gif" />
+					</f:facet>
+					
+					<f:facet name="complete">
+						<h:outputText value="" />
+					</f:facet>
+				</p:ajaxStatus>
+					
+		</ui:define>
+	<ui:define name="dialogWindow">
+	</ui:define>
+	
+	</ui:composition>
+	
+
+	
+</h:body>
+</html>

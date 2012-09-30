@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Müşteri Hesap Silme Onayı Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_musteri_template.xhtml">
+		<ui:define name="search-form">
+				
+			<p:panel header="Silinecek hesap ayrıntıları:" footer="">
+				<h:outputText value="Not: İçinde bakiye bulunan hesaplar silinemez" />
+				<h:panelGrid columns="2">
+					
+					<h:outputText value="ID: " />
+		            <h:outputText value="#{musteriHesapSilBean.silinecekHesap.hesapno}"/>
+					
+		            <h:outputText value="Adı: " />
+		            <h:outputText value="#{musteriHesapSilBean.silinecekHesap.hesapAdi}"/>
+					
+		            <h:outputText value="Bakiyesi: " />
+		            <h:outputText value="#{musteriHesapSilBean.silinecekHesap.hesapBalance}"/>
+					
+		            <h:outputText value="Şubesi " />
+		            <h:outputText value="#{musteriHesapSilBean.silinecekHesap.sube.subeAdi}"/>
+					
+		            <h:commandLink value="Bu hesabı sil" update="musteriHesapTable" action="#{musteriHesapSilBean.hesapSil}">
+		                <f:param name="silinecekHesapId" value="#{musteriHesapSilBean.silinecekHesap.hesapno}" />
+		            </h:commandLink>
+	            </h:panelGrid>
+			</p:panel>
+			
+			<p:outputPanel id="musteriHesapTable">	
+				<p:growl id="growl" showDetail="true" />
+				<p:dataTable var="hesap" value="#{musteriHesapSilBean.hesaplar}" paginator="true" rows="10">
+	                
+			        <f:facet name="header">
+			            Hesapların Listesi
+			        </f:facet>
+			
+					<p:column sortBy="#{hesap.hesapno}">
+			            <f:facet name="header">
+			                <h:outputText value="Hesap No" />
+			            </f:facet>
+			            <h:outputText value="#{hesap.hesapno}" />
+			        </p:column>
+			
+			        <p:column sortBy="#{hesap.hesapAdi}">
+			            <f:facet name="header">
+			                <h:outputText value="Hesap adı" />
+			            </f:facet>
+			            <h:outputText value="#{hesap.hesapAdi}" />
+			        </p:column>
+			
+			        <p:column sortBy="#{hesap.hesapBalance}">
+			            <f:facet name="header">
+			                <h:outputText value="Bakiye" />
+			            </f:facet>
+			            <h:outputText value="#{hesap.hesapBalance}" />
+			        </p:column>
+			        
+			        <p:column sortBy="#{hesap.sube.subeAdi}">
+			            <f:facet name="header">
+			                <h:outputText value="Şubesi" />
+			            </f:facet>
+			            <h:outputText value="#{hesap.sube.subeAdi}" />
+			        </p:column>
+			        
+			        <p:column sortBy="#{hesap.sube.subeSehir}">
+			            <f:facet name="header">
+			                <h:outputText value="Şehir" />
+			            </f:facet>
+			            <h:outputText value="#{hesap.sube.subeSehir}" />
+			        </p:column>
+			        
+			        <p:column style="width:32px">
+		            <p:commandButton update="display" oncomplete="carDialog.show()"
+		                    image="ui-icon ui-icon-search">
+		                <f:setPropertyActionListener value="#{hesap}"
+		                    target="#{musteriHesapSilBean.selectedHesap}" />
+		            </p:commandButton>
+		        	</p:column>
+		        
+			    </p:dataTable>	
+			</p:outputPanel>	
+		</ui:define>
+		<ui:define name="dialogWindow">
+	
+			<p:dialog header="Hesap ayrıntısı" widgetVar="carDialog" resizable="false" width="200" showEffect="explode" hideEffect="explode">
+		
+		        <h:panelGrid id="display" columns="2" cellpadding="4">
+		
+		            <h:outputText value="ID: " />
+		            <h:outputText value="#{musteriHesapSilBean.selectedHesap.hesapno}"/>
+		
+		            <h:outputText value="Adı: " />
+		            <h:outputText value="#{musteriHesapSilBean.selectedHesap.hesapAdi}"/>
+		
+		            <h:outputText value="Bakiye: " />
+		            <h:outputText value="#{musteriHesapSilBean.selectedHesap.hesapBalance}"/>
+		            
+		            <h:outputText value="Şubesi: " />
+		            <h:outputText value="#{musteriHesapSilBean.selectedHesap.sube.subeAdi}"/>
+		            
+		            <h:outputText value="Şehir: " />
+		            <h:outputText value="#{musteriHesapSilBean.selectedHesap.sube.subeSehir}"/>
+		        </h:panelGrid>
+		    </p:dialog>
+		    
+   		</ui:define>
+	</ui:composition>
+    	
+</h:body>
+</html>

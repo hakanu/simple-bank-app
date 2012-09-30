@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Internet Bankacılığı Müşteri Ana Sayfası</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<div align="center">
+<table border="5">
+  <tr><th class="title">Internet Bankacılığı Müşteri Ana Sayfası</th></tr>
+</table>
+<p/>
+
+
+
+<h:form>
+<fieldset>
+  <h:commandButton value="Hesapları Listele" action="_user_kitap_list.jsf"/>
+                   
+  <h:commandButton value="Şube Ara" action="_user_kitap_ara.jsf"/>
+   
+  <h:commandButton value="Yeni hesap aç" action="_user_kitap_ekle.jsf"/>
+                   
+  <h:commandButton value="Hesap kaldır" action="_user_kitap_sil.jsf"/>
+  
+</fieldset>
+</h:form>
+</div></h:body></html>

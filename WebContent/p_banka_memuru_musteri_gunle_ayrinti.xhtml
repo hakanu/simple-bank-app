@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memurunun Müşteri Bilgisini Güncelleme Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/p_banka_memuru_template.xhtml">
+
+			<ui:define name="search-form">
+				
+				<p:growl id="growl" showDetail="true" />			
+				<p:panel header="Güncellenecek Müşteri Bilgileri" footer="">
+				
+					<h:panelGrid columns="2">
+						<h:outputText value="ID: " />
+			            <h:outputText value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.id}"/>
+						
+			            <h:outputText value="Adı: " />
+			            <h:inputText value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.adi}" required="true" 
+							requiredMessage="Müşteri adını boş bırakamazsınız"/>
+						
+			            <h:outputText value="Soyadı: " />
+			            <h:inputText value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.soyadi}" required="true" 
+							requiredMessage="Müşteri soyadını boş bırakamazsınız"/>
+						
+			            <h:outputText value="Üye Adı: " />
+			            <h:inputText value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.uyeAdi}" required="true" 
+							requiredMessage="Üye adını boş bırakamazsınız"/>
+						
+			            <!-- <h:outputText value="Şifresi: " />
+			            <h:inputText value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.sifre}" required="true" 
+							requiredMessage="Şifreyi boş bırakamazsınız"/> -->
+						
+						<h:outputText value="Müşterinin Yaşı: " />
+						<h:inputText required="true" label="Yas" value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.yas}" 
+							requiredMessage="Müşterinin yaşını boş bırakamazsınız"/>
+																	
+			            <h:outputText value="Mail: " />
+			            <h:inputText value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.mail}" required="true" 
+							requiredMessage="Müşterinin emailn adresini boş bırakamazsınız"/>
+											
+			            <h:outputText value="Web: " />
+			            <h:inputText value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.web}" required="true" 
+							requiredMessage="Müşterinin adresini boş bırakamazsınız"/>
+						
+			            <h:commandLink value="Bu Müşteriyi günle" update="musteriTable" action="#{bankaMemuruMusteriGunleBean.musteriGunle}">
+			                <f:param name="gunlenecekMusteriId" value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.id}" />
+			            </h:commandLink>
+		            </h:panelGrid>
+					
+		            <!--  <h:commandButton value="Bu Müşteriyi günle" update="musteriTable" action="#{bankaMemuruMusteriGunleBean.musteriGunle}">
+		                <f:param name="gunlenecekMusteriId" value="#{bankaMemuruMusteriGunleBean.gunlenecekMusteri.id}" />
+		            </h:commandButton>-->
+		            
+				</p:panel>			
+				
+	</ui:define>
+
+</ui:composition>
+
+</h:body>
+</html>

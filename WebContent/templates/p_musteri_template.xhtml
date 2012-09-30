@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.prime.com.tr/ui">
+		
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Müşteri Ana Sayfası</title>
+		<!-- <link type="text/css" rel="stylesheet" href="./css/start/skin.css"/> -->
+		<!-- <link type="text/css" rel="stylesheet" href="./css/dot-luv/skin.css"/> -->
+		<link type="text/css" rel="stylesheet" href="./css/trontastic/skin.css"/>
+    </h:head>
+    <h:body> 
+        <ui:insert />
+        
+        <h:form>
+		<p:idleMonitor timeout="15000" update="message" idleListener="#{idleMonitorController.idleListener}"/> 		
+        <div align="center">
+        <p:graphicImage value="/images/banka/son.png" />
+			<p:menubar>
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Ana Sayfa" url="p_musteri_main.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Hakkında" url="p_about.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Nasıl kullanılır?" url="p_how_to_use.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Şubeler" url="p_hesapler.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+		</p:menubar>
+		</div>
+			
+	 	<p:graphicImage value="/images/shutdown_kucuk.png" />
+		<h:commandLink value="Çıkış yap" action="#{logout.doLogout}" />
+		<p/><p/><p/>
+		
+		<div align="center">
+		<p:layout style="width:1000px;height:1000px;">
+			<p:layoutUnit position="left" width="300" resizable="true" minWidth="50" maxWidth="200">
+					<p:menu style="width:300px" ajax="false">
+					<p:submenu label="Hesap işlemleri" ajax="false">
+						<p:menuitem value="Hesaplarım" url="p_musteri_hesap_list.jsf" icon="/images/save.png" ajax="false"/>
+						<p:menuitem value="Hesap hareketleri" url="p_musteri_hesap_hareketleri.jsf" icon="/images/update.png" ajax="false"/>
+						<p:menuitem value="Yeni Hesap ekle" url="p_musteri_hesap_ekle_sube_sec.jsf" icon="/images/update.png" ajax="false"/>
+						<p:menuitem value="Hesap sil" url="p_musteri_hesap_sil.jsf" icon="/images/update.png" ajax="false"/>
+					</p:submenu>
+					<p:submenu label="Müşteri işlemleri" ajax="false">
+						<p:menuitem value="Müşteri bilgisi güncelle" url="p_musteri_bilgi_gunle_ayrinti.jsf" icon="/images/update.png" ajax="false"/>
+						<p:menuitem value="Şifre değiştir" url="p_musteri_sifre_degistir.jsf" icon="/images/update.png" ajax="false"/>
+					</p:submenu>
+					<p:submenu label="Banka işlemleri" ajax="false">
+						<p:menuitem value="Havale" url="p_musteri_havale.jsf" icon="/images/save.png" ajax="false"/>
+						<p:menuitem value="EFT" url="p_musteri_eft.jsf" icon="/images/update.png" ajax="false"/>
+					</p:submenu>
+				</p:menu>
+			</p:layoutUnit>
+		    			
+			<p:layoutUnit position="center">
+				<p:panel header="Internet Bankacılığı Uygulaması Yöneticisi" footer="">
+					<h:outputText value="Internet Bankacılığı Uygulaması'na müşteri olarak giriş yaptınız. 
+						İşlem yapmak için sol menüyü kullanabilirsiniz."/> 
+				</p:panel>
+					
+					<ui:insert name="search-form">
+					</ui:insert>
+					
+				</p:layoutUnit>
+			
+			</p:layout>
+			</div>
+			
+			
+			
+		</h:form>
+		
+		<ui:insert name="dialogWindow">
+		</ui:insert>
+		
+    </h:body>
+</html>

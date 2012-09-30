@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memuru Ana Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_musteri_template.xhtml">
+		<ui:define name="search-form">
+			<p:growl id="growl" showDetail="true" />
+			<p:panel header="Havale yapacak hesabın ayrıntıları" footer="">
+				<h:panelGrid columns="2">
+		            <h:outputText value="Adı: " />
+		            <h:outputText value="#{musteriHavaleBean.havaleGonderenHesabi.musteri.adi}"/>
+					
+		            <h:outputText value="Soyadı: " />
+		            <h:outputText value="#{musteriHavaleBean.havaleGonderenHesabi.musteri.soyadi}"/>
+					
+		            <h:outputText value="Üye Adı: " />
+		            <h:outputText value="#{musteriHavaleBean.havaleGonderenHesabi.musteri.uyeAdi}"/>
+						
+		            <h:outputText value="Hesap Adı: " />
+		            <h:outputText value="#{musteriHavaleBean.havaleGonderenHesabi.hesapAdi}"/>
+					
+					<h:outputText value="Hesap No: " />
+		            <h:outputText value="#{musteriHavaleBean.havaleGonderenHesabi.hesapno}"/>
+					
+					<h:outputText value="Şubesi: " />
+		            <h:outputText value="#{musteriHavaleBean.havaleGonderenHesabi.sube.subeAdi}"/>
+					
+					<h:outputText value="Şube şehri: " />
+		            <h:outputText value="#{musteriHavaleBean.havaleGonderenHesabi.sube.subeSehir}"/>
+					
+		            <h:outputText value="Bakiye: " />
+		            <h:outputText value="#{musteriHavaleBean.havaleGonderenHesabi.hesapBalance}"/>
+					
+				</h:panelGrid>
+			</p:panel>
+				
+			<p:panel header="Havale ayrıntılarını giriniz">
+				<h:messages errorClass="error"/>
+				<h:panelGrid columns="2">
+					<h:outputText value="Hesap Numarası: " />
+					<h:inputText label="Hesap Numarası" value="#{musteriHavaleBean.havaleAlanHesabi.hesapno}" required="true" 
+			            	requiredMessage="Alacak hesap numarasını boş bırakamazsınız"/>
+					
+					<h:outputText value="Havale yapılacak miktar: " />
+					<h:inputText label="Miktar" value="#{musteriHavaleBean.havaleMiktar}" required="true" 
+			            	requiredMessage="Havale yapılacak miktarı boş bırakamazsınız"/>
+					
+					<h:outputText value="Havale açıklaması: " />
+					<h:inputText label="Havale açıklaması" value=" " />
+					
+					<h:outputText value="Havale işlem ücreti: " />
+					<h:outputText value="#{musteriHavaleBean.havaleIslemUcreti}" />
+					
+					<h:commandButton value="Submit" action="#{musteriHavaleBean.havaleYap}"/>
+					
+					<p:commandButton value="Temizle" type="reset"/>
+					
+					
+				</h:panelGrid>
+			</p:panel>
+				
+			<p:ajaxStatus style="width:16px;height:16px;">
+				<f:facet name="start">
+					<h:graphicImage value="../design/ajaxloading.gif" />
+				</f:facet>
+				
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+				
+				
+					
+		</ui:define>
+	
+	</ui:composition>
+	
+
+	
+</h:body>
+</html>

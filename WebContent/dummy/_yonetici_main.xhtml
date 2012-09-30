@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Banka Yöneticisi Ana Sayfası</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<div align="center">
+<table border="5">
+  <tr><th class="title">Banka Yöneticisi Ana Sayfası</th></tr>
+</table>
+<p/>
+
+
+
+<h:form>
+	
+<fieldset>
+  <h:commandButton value="Şubeleri Listele" 
+                   action="_yonetici_kitap_list.jsf"/>
+                   
+  <h:commandButton value="Şube Ekle" 
+                   action="_yonetici_kitap_ekle.jsf"/>
+                   
+  <h:commandButton value="Şube Sil" 
+                   action="_yonetici_kitap_sil.jsf"/>
+                   
+  <h:commandButton value="Şube Bilgisi Güncelle" 
+                   action="_yonetici_kitap_gunle.jsf"/>
+</fieldset>
+</h:form>
+</div></h:body></html>

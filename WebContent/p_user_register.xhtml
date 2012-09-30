@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Müşteri Kayıt Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_genel_template.xhtml">
+		<ui:define name="search-form">	
+	
+			<p/><p/><p/>
+			<p:growl id="growl" showDetail="true" />
+			<p:wizard widgetVar="wiz" flowListener="#{musteriKayitBean.onFlowProcess}">
+		
+			<p:tab id="personal">
+	
+				<p:panel header="Kişisel bilgiler">
+				
+					<h:messages errorClass="error"/>
+					
+					<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+						<h:outputText value="Ad: *" />
+						<h:inputText required="true" label="Ad" value="#{musteriKayitBean.musteri.adi}" 
+							requiredMessage="Adınızı boş bırakamazsınız"/>
+						
+						<h:outputText value="Soyad: *" />
+						<h:inputText required="true" label="Soyad" value="#{musteriKayitBean.musteri.soyadi}" 
+							requiredMessage="Soyadınızı boş bırakamazsınız"/>
+						
+						<h:outputText value="Yaş: " />
+						<h:inputText required="true" label="Yas" value="#{musteriKayitBean.musteri.yas}" 
+							requiredMessage="Yaşınızı boş bırakamazsınız"/>
+						
+						<h:outputText value="TC Kimlik No: *" />
+						<h:inputText required="true" label="TCKimlikNo" value="#{musteriKayitBean.musteri.tckimlik}" 
+							requiredMessage="TC Kimlik No hanesini boş bırakamazsınız">
+							 <f:validateLength minimum="11" maximum="11"/>
+						</h:inputText>
+							
+						<h:outputText value="Üye adı *" />
+						<h:inputText required="true" label="uyeAdi" value="#{musteriKayitBean.musteri.uyeAdi}" 
+							requiredMessage="Üye adınızı boş bırakamazsınız"/>
+						
+						<h:outputText value="Şifrenizi giriniz: " />
+						<!-- <h:inputText required="true" label="sifre" value="#{musteriKayitBean.musteri.sifre}" 
+							requiredMessage="Şifrenizi boş bırakamazsınız"/> -->
+							
+						<p:password value="#{musteriKayitBean.musteri.sifre}" promptLabel="Şifre: *" weakLabel="Zayıf"  
+		                     goodLabel="Orta seviye" strongLabel="Güçlü" id="sifre" required="true" 
+		                     requiredMessage="Şifreyi boş bırakamazsınız">
+		                	 <f:validateLength minimum="4"/> 
+		                </p:password> 	
+							
+					</h:panelGrid>
+				</p:panel>
+			</p:tab>
+				
+			<p:tab id="address">
+				<p:panel header="Adres detayları">
+				
+					<h:messages errorClass="error"/>
+					
+					<h:panelGrid columns="2" columnClasses="label, value">
+						<h:outputText value="Adres: " />
+						<h:inputText value="#{musteriKayitBean.musteri.web}" required="true" 
+						requiredMessage="Adresinizi boş bırakamazsınız"/>
+							
+						
+					</h:panelGrid>
+				</p:panel>
+			</p:tab>
+				
+			<p:tab id="contact">
+				<p:panel header="İletişim bilgileri">
+					
+					<h:messages errorClass="error"/>
+				
+					<h:panelGrid columns="2" columnClasses="label, value">
+						<h:outputText value="Email: *" />
+						<h:inputText required="true" label="Email" value="#{musteriKayitBean.musteri.mail}" 
+							requiredMessage="Mail adresinizi boş bırakamazsınız"/>
+							
+						<h:outputText value="Telefon: *" />
+						<h:inputText required="true" label="Telefon" value="#{musteriKayitBean.musteri.telefon}"
+							requiredMessage="Telefonu boş bırakamazsınız">
+							<f:validateLength minimum="8" />
+						</h:inputText>
+					</h:panelGrid>
+					
+					
+				</p:panel>
+			</p:tab>
+				
+			<p:tab id="confirm">
+				<p:panel header="Doğrulama">
+				
+					<!-- <p:growl id="growl" sticky="true" showDetail="true"/>-->
+				
+					<h:panelGrid id="confirmation" columns="2">
+						<h:outputText value="Ad: " />
+						<h:outputText styleClass="outputLabel" value="#{musteriKayitBean.musteri.adi}" />
+						
+						<h:outputText value="Soyad: " />
+						<h:outputText  styleClass="outputLabel" value="#{musteriKayitBean.musteri.soyadi}"/>
+						
+						<h:outputText value="Yaş: " />
+						<h:outputText styleClass="outputLabel" value="#{musteriKayitBean.musteri.yas}" />
+						
+						<h:outputText value="Adres: " />
+						<h:outputText styleClass="outputLabel" value="#{musteriKayitBean.musteri.web}" />
+						
+						<h:outputText value="Email: " />
+						<h:outputText styleClass="outputLabel" value="#{musteriKayitBean.musteri.mail}" />
+						
+						<h:outputText value="TC Kimlik No: " />
+						<h:outputText styleClass="outputLabel" value="#{musteriKayitBean.musteri.tckimlik}" />
+						
+						<h:outputText value="Telefon: " />
+						<h:outputText styleClass="outputLabel" value="#{musteriKayitBean.musteri.telefon}" />
+						
+						<h:outputText value="Üye adı: " />
+						<h:outputText styleClass="outputLabel" value="#{musteriKayitBean.musteri.uyeAdi}" />
+						
+					</h:panelGrid>
+					
+					<h:commandButton value="Submit" action="#{musteriKayitBean.save}"/>
+					
+				</p:panel>
+			</p:tab>
+			
+		</p:wizard>
+	
+			<p:ajaxStatus>
+				<f:facet name="start">
+					<h:graphicImage value="../design/ajaxloading.gif" />
+				</f:facet>
+				
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+	
+			</ui:define>
+		</ui:composition>
+	
+</h:body>
+</html>

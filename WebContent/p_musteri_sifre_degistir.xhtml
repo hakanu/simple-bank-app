@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Müşteri Bilgi Güncelleme Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/p_musteri_template.xhtml">
+		<ui:define name="search-form">
+			<p:growl id="growl" showDetail="true" />
+			<p:panel header="Şifre Değiştir" footer="">
+				<h:panelGrid columns="2">
+					<h:outputText value="Eski şifre: " />
+		            <h:inputSecret value="#{musteriBilgiGunleBean.eskiSifre}" required="true" 
+		            	requiredMessage="Müşteri şifresini boş bırakamazsınız"/>
+			            	
+	            	<h:outputText value="Yeni şifre: " />
+		            <p:password value="#{musteriBilgiGunleBean.yeniSifre}" promptLabel="Yeni şifre: *" weakLabel="Zayıf"  
+	                     goodLabel="Orta seviye" strongLabel="Güçlü" id="sifre" required="true" 
+	                     requiredMessage="Şifreyi boş bırakamazsınız"/> 
+			            	
+			        <h:commandLink value="Şifre değiştir" action="#{musteriBilgiGunleBean.sifreDegistir}">
+			                <f:param name="gunlenecekMusteriId" value="#{musteriBilgiGunleBean.gunlenecekMusteri.id}" />
+			         </h:commandLink>    	
+		         </h:panelGrid>	
+			</p:panel>	
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

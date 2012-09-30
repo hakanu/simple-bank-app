@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Kütüphane Yöneticisi Kitap Ekleme Sayfası</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<div align="center">
+<table border="5">
+  <tr><th class="title">Yeni Hesap Ekleme Sayfası</th></tr>
+</table>
+<p/>
+
+<h:form>
+
+	<p>Açılacak hesabın şube bilgisi:</p>
+	<td>
+		<tr>
+		<h:outputText value="Şube kodu : #{bankingBean.subeBilgisi.isbn}"/>
+		</tr><p/>
+		<tr>
+		<h:outputText value="Şube adı : #{bankingBean.subeBilgisi.baslik}"/>
+		</tr><p/>
+		<tr>
+		<h:outputText value="Şube şehri : #{bankingBean.subeBilgisi.yazar}"/>
+		</tr><p/>
+		<tr>
+		<h:outputText value="Personel durumu : #{bankingBean.subeBilgisi.almaizni}"/>
+		</tr><p/>
+	</td>
+	
+	<p/>
+	
+	<h:outputText value="Hesap adını giriniz: "/>
+	<h:inputText value="#{bankingBean.hesap.hesapAdi}"/>
+	<p/>
+	
+	<h:outputText value="Hesap bakiyesini giriniz: "/>
+	<h:inputText value="#{bankingBean.hesap.hesapBalance}"/>
+	<p/>
+
+<fieldset>
+  <h:commandButton value="Hesap Ekle" action="#{bankingBean.userHesapAc}"/>     
+</fieldset>
+
+
+</h:form>
+
+</div></h:body></html>

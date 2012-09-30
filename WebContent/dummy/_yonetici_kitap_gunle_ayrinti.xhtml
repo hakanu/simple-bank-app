@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<h:head>
+	<title>Banka Yöneticisi Şube Günleme Sayfası</title>
+	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+	<div align="center">
+	<table border="5">
+		<tr>
+			<th class="title">Banka Yöneticisi Şube Günleme Sayfası</th>
+		</tr>
+	</table>
+	<p />
+
+	<h:form>
+
+		<h:outputText value="Şubenin yeni adını giriniz: " />
+		<h:inputText value="#{bankingBean.updatedKitap.baslik}" />
+		<p />
+
+		<h:outputText value="Şubenin yeni şehrini giriniz: " />
+		<h:inputText value="#{bankingBean.updatedKitap.yazar}" />
+		<p />
+
+		<h:outputText value="Şubenin yeni kodunu giriniz: " />
+		<h:inputText value="#{bankingBean.updatedKitap.isbn}" />
+		<p />
+
+		<fieldset>
+			<h:commandButton value="Şubeyi günle"
+				action="#{bankingBean.kitapGunleConcrete}"> 
+				<f:param name="ISBN" value="#{bankingBean.kitap.kitapno}"/>
+			</h:commandButton>
+		</fieldset>
+
+
+	</h:form></div>
+</h:body>
+</html>

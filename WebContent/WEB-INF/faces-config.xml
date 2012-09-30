@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+      http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+
+	<lifecycle>
+		<phase-listener>com.banka.accessControl.LoggedInCheck</phase-listener>
+	</lifecycle>
+	
+	<navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+              <from-outcome>logout</from-outcome>
+              <to-view-id>/index.xhtml</to-view-id>
+              <redirect/>
+        </navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+              <from-outcome>login</from-outcome>
+              <to-view-id>/p_loginn.xhtml</to-view-id>
+              <redirect/>
+        </navigation-case>
+	</navigation-rule>
+	
+
+
+	<navigation-rule>
+		<from-view-id>/_yonetici_main.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_gunle</from-outcome>
+			<to-view-id>/_yonetici_kitap_gunle.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_list</from-outcome>
+			<to-view-id>/_yonetici_kitap_list.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_gunle_ayrinti</from-outcome>
+			<to-view-id>/_yonetici_kitap_gunle_ayrinti.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/_user_main.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_gunle</from-outcome>
+			<to-view-id>/_yonetici_kitap_gunle.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_list</from-outcome>
+			<to-view-id>/_yonetici_kitap_list.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_user_kitap_list</from-outcome>
+			<to-view-id>/_user_kitap_list.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_gunle_ayrinti</from-outcome>
+			<to-view-id>/_yonetici_kitap_gunle_ayrinti.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_user_kitap_ekle</from-outcome>
+			<to-view-id>/_user_kitap_ekle.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_user_kitap_sil</from-outcome>
+			<to-view-id>/_user_kitap_sil.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_user_kitap_ara_result</from-outcome>
+			<to-view-id>/user_kitap_ara_result.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/_login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_gunle</from-outcome>
+			<to-view-id>/_yonetici_kitap_gunle.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_list</from-outcome>
+			<to-view-id>/_yonetici_kitap_list.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_ekle</from-outcome>
+			<to-view-id>/_yonetici_kitap_ekle.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_sil</from-outcome>
+			<to-view-id>/_yonetici_kitap_sil.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_user_kitap_list</from-outcome>
+			<to-view-id>/_user_kitap_list.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_gunle_ayrinti</from-outcome>
+			<to-view-id>/_yonetici_kitap_gunle_ayrinti.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_user_kitap_ekle</from-outcome>
+			<to-view-id>/_user_kitap_ekle.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_user_kitap_sil</from-outcome>
+			<to-view-id>/_user_kitap_sil.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_user_kitap_ara</from-outcome>
+			<to-view-id>/_user_kitap_ara.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>_user_kitap_ara_result</from-outcome>
+			<to-view-id>/user_kitap_ara_result.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>p_loginn</from-outcome>
+			<to-view-id>/_user_main.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/_yonetici_kitap_ekle.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_gunle</from-outcome>
+			<to-view-id>/_yonetici_kitap_gunle.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/_yonetici_kitap_list.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_gunle</from-outcome>
+			<to-view-id>/_yonetici_kitap_gunle.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/_yonetici_kitap_sil.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>_yonetici_kitap_list</from-outcome>
+			<to-view-id>/_yonetici_kitap_list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/p_loginn.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>_user_main</from-outcome>
+			<to-view-id>/_user_main.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+</faces-config>

@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+	
+<h:head>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+
+<h:body>
+	
+	
+	<ui:composition template="/templates/p_genel_template.xhtml">
+		<ui:define name="search-form">	
+		
+			<p:growl id="growl" showDetail="true" />
+			<p:panel id="panel" header="Şifre sıfırlama" style="margin-bottom:10px;">
+				<p:messages />
+				<h:outputText value="Değerli müşterimiz lütfen sistemde kayıtlı olan bilgilerinizi 
+					tam ve doğru şekilde giriniz. Yeni şifreniz otomatik olarak o adrese gönderilecektir" 
+					id="panelMessage"/>
+				<h:panelGrid columns="2">
+					<h:outputLabel for="mail" value="Mail: *" />
+					<h:inputText id="mail" value="#{sifremiUnuttumBean.mail}" label="mail" required="true" 
+		            	requiredMessage="Mail adresini boş bırakamazsınız">
+						<f:validateLength minimum="2" />
+					</h:inputText>
+					
+					<h:outputLabel for="uyeAdi" value="Üye Adı: *" />
+					<h:inputText id="uyeAdi" value="#{sifremiUnuttumBean.uyeAdi}" label="uyeAdi" required="true" 
+		            	requiredMessage="Üye adını adresini boş bırakamazsınız">
+						<f:validateLength minimum="2" />
+					</h:inputText>
+					
+					<h:outputLabel for="telefon" value="Telefon: *" />
+					<h:inputText id="telefon" value="#{sifremiUnuttumBean.telefon}" label="telefon" required="true" 
+		            	requiredMessage="Telefonu boş bırakamazsınız">
+						<f:validateLength minimum="2" />
+					</h:inputText>
+					
+				</h:panelGrid>
+			</p:panel>
+		
+			<p:commandButton value="Şifre sıfırla" action="#{sifremiUnuttumBean.sifremiUnuttum}" />
+			
+			<p:commandButton value="Yeni kullanıcı kaydı" action="p_user_register.jsf" ajax="false"/>
+			
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

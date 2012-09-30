@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Yöneticisi Ana Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_musteri_template.xhtml">
+		<ui:define name="search-form">
+				<p:growl id="growl" showDetail="true" />
+				<p:ajaxStatus style="width:16px;height:16px;">
+					<f:facet name="start">
+						<h:graphicImage value="../design/ajaxloading.gif" />
+					</f:facet>
+					
+					<f:facet name="complete">
+						<h:outputText value="" />
+					</f:facet>
+				</p:ajaxStatus>
+				
+				<p:outputPanel id="subeTable">
+					
+					<p:dataTable var="sube" value="#{hesapEkleBean.subeler}" paginator="true" rows="10" rendered="true">
+	                 
+				        <f:facet name="header">
+				            Banka Şubelerinin Listesi
+				        </f:facet>
+				
+						<p:column sortBy="#{sube.subeId}">
+				            <f:facet name="header">
+				                <h:outputText value="Şube Kodu" />
+				            </f:facet>
+				            <h:outputText value="#{sube.subeId}" />
+				        </p:column>
+				
+				        <p:column sortBy="#{sube.subeAdi}">
+				            <f:facet name="header">
+				                <h:outputText value="Şube Adı" />
+				            </f:facet>
+				            <h:outputText value="#{sube.subeAdi}" />
+				        </p:column>
+				
+				        <p:column sortBy="#{sube.subeSehir}">
+				            <f:facet name="header">
+				                <h:outputText value="Şube Şehri" />
+				            </f:facet>
+				            <h:outputText value="#{sube.subeSehir}" />
+				        </p:column>
+				
+				         <p:column sortBy="#{sube.subeAssests}">
+				            <f:facet name="header">
+				                <h:outputText value="Şube subeAssests" />
+				            </f:facet>
+				            <h:outputText value="#{sube.subeAssests}" />
+				        </p:column>
+				        
+				        <p:column style="width:32px">
+					        <f:facet name="header">
+				                <h:outputText value="Ayrıntı" />
+				            </f:facet>
+				            <p:commandButton update="display" oncomplete="carDialog.show()" image="ui-icon ui-icon-search">
+				                <f:setPropertyActionListener value="#{sube}" target="#{hesapEkleBean.hesapEklenecekSube}" />
+				            </p:commandButton>
+			        	</p:column>
+			        
+			        	<p:column style="width:32px">
+				            <h:commandLink value="Şubeye hesap ekle" action="#{hesapEkleBean.yonlendir}">
+				                <f:param name="hesapEklenecekSubeId" value="#{sube.subeId}" />
+				            </h:commandLink>
+			        	</p:column>
+			             
+				    </p:dataTable>
+				
+				</p:outputPanel>	
+					
+		</ui:define>
+		<ui:define name="dialogWindow">
+	
+	
+			<p:dialog header="Şube ayrıntısı" widgetVar="carDialog" resizable="false" width="200" showEffect="explode" hideEffect="explode">
+		
+		        <h:panelGrid id="display" columns="2" cellpadding="4">
+		
+		            <h:outputText value="ID:" />
+		            <h:outputText value="#{hesapEkleBean.hesapEklenecekSube.subeId}"/>
+		
+		            <h:outputText value="Adı:" />
+		            <h:outputText value="#{hesapEkleBean.hesapEklenecekSube.subeAdi}"/>
+		
+		            <h:outputText value="Şehri:" />
+		            <h:outputText value="#{hesapEkleBean.hesapEklenecekSube.subeSehir}"/>
+		
+		            <h:outputText value="Varlığı" />
+		            <h:outputText value="#{hesapEkleBean.hesapEklenecekSube.subeAssests}"/>
+		        </h:panelGrid>
+		    </p:dialog>
+		    
+	    </ui:define>
+	</ui:composition>
+    
+</h:body>
+</html>

@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+
+</h:head>
+<h:body>
+
+	<h:form prependId="false">
+
+		<p:commandButton value="Ajax Submit" actionListener="#{login.checkUserLogin}" ajax="false"/>
+		<p:commandButton value="send redirect" actionListener="#{login.deneme}" ajax="false"/>
+		<p:commandButton value="Yönlendir" actionListener="_user_main.jsf" ajax="false"/>
+		<h:commandButton value="Yönlendir_h:comma" actionListener="_user_main.jsf" ajax="false"/>
+		<h:commandLink value="Yönlendir_h:comma" action="_user_main.jsf"/>
+
+	</h:form>
+
+</h:body>
+</html>

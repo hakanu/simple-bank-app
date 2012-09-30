@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Müşteri Hesap Hareketleri İzleme</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_musteri_template.xhtml">
+		<ui:define name="search-form">
+				
+				
+				<p:dataTable id="tbl" var="islem" value="#{musteriHesapHareketBean.islemler}" paginator="true" rows="10">
+                 
+			        <f:facet name="header">
+			            Hesap Hareketleri
+			        </f:facet>
+			
+					<p:column sortBy="#{islem.islemId}">
+			            <f:facet name="header">
+			                <h:outputText value="No" />
+			            </f:facet>
+			            <h:outputText value="#{islem.islemId}" />
+			        </p:column>
+			
+			        <p:column sortBy="#{islem.islemTarihi}">
+			            <f:facet name="header">
+			                <h:outputText value="Zamani" />
+			            </f:facet>
+			            <h:outputText value="#{islem.islemTarihi}" />
+			        </p:column>
+			
+			        <p:column sortBy="#{islem.yatanMiktar}">
+			            <f:facet name="header">
+			                <h:outputText value="Yatirilan" />
+			            </f:facet>
+			            <h:outputText value="#{islem.yatanMiktar}" />
+			        </p:column>
+			        
+			        <p:column sortBy="#{islem.cekilenMiktar}">
+			            <f:facet name="header">
+			                <h:outputText value="Cekilen" />
+			            </f:facet>
+			            <h:outputText value="#{islem.cekilenMiktar}" />
+			        </p:column>
+			        
+			        <p:column sortBy="#{islem.islemHesabi.hesapno}">
+			            <f:facet name="header">
+			                <h:outputText value="Hesap" />
+			            </f:facet>
+			            <h:outputText value="#{islem.islemHesabi}" />
+			        </p:column>
+			        
+			        <p:column sortBy="#{islem.islemHesabi.hesapAdi}">
+			            <f:facet name="header">
+			                <h:outputText value="Hesap no" />
+			            </f:facet>
+			            <h:outputText value="#{islem.islemHesapno}" />
+			        </p:column>
+			        
+			       <p:column sortBy="#{islem.hesapBakiye}">
+			            <f:facet name="header">
+			                <h:outputText value="Bakiye" />
+			            </f:facet>
+			            <h:outputText value="#{islem.hesapBakiye}" />
+			        </p:column>
+			        
+			        <p:column style="width:32px">
+		            <p:commandButton update="display" oncomplete="carDialog.show()"
+		                    image="ui-icon ui-icon-search">
+		                <f:setPropertyActionListener value="#{islem}" target="#{musteriHesapHareketBean.selectedIslem}" />
+		            </p:commandButton>
+		        	</p:column>
+		        
+			    </p:dataTable>	
+				
+				<h:panelGrid columns="2">
+					<p:panel header="Özeti bilgisayarıma indir">
+				
+						<h:commandLink>
+							<p:graphicImage value="/images/pdf.png" />
+							<p:dataExporter type="pdf" target="tbl" fileName="hesap_özeti" excludeColumns="7"/>
+						</h:commandLink>
+						
+						<h:commandLink>
+							<p:graphicImage value="/images/csv.png" />
+							<p:dataExporter type="csv" target="tbl" fileName="hesap_özeti" excludeColumns="7"/>
+						</h:commandLink>
+						
+						<h:commandLink>
+							<p:graphicImage value="/images/xml.png" />
+							<p:dataExporter type="xml" target="tbl" fileName="hesap_özeti" excludeColumns="7"/>
+						</h:commandLink>
+					</p:panel>
+					
+					<p:panel header="Bu özet sayfasını bilgisayarıma indir">
+				
+						<h:commandLink>
+							<p:graphicImage value="/images/pdf.png" />
+							<p:dataExporter type="pdf" target="tbl" fileName="hesap_özeti" pageOnly="true" excludeColumns="7"/>
+						</h:commandLink>
+						
+						<h:commandLink>
+							<p:graphicImage value="/images/csv.png" />
+							<p:dataExporter type="csv" target="tbl" fileName="hesap_özeti" pageOnly="true" excludeColumns="7"/>
+						</h:commandLink>
+						
+						<h:commandLink>
+							<p:graphicImage value="/images/xml.png" />
+							<p:dataExporter type="xml" target="tbl" fileName="hesap_özeti" pageOnly="true" excludeColumns="7"/>
+						</h:commandLink>
+					</p:panel>
+				</h:panelGrid>
+				
+		</ui:define>
+		<ui:define name="dialogWindow">
+	
+			<p:dialog header="İşlem ayrıntısı" widgetVar="carDialog" resizable="false" width="200" showEffect="explode" hideEffect="explode">
+		
+		        <h:panelGrid id="display" columns="2" cellpadding="4">
+		
+		            <h:outputText value="ID: " />
+		            <h:outputText value="#{musteriHesapHareketBean.selectedIslem.islemId}}"/>
+		
+		            <h:outputText value="Tarihi: " />
+		            <h:outputText value="#{musteriHesapHareketBean.selectedIslem.islemTarihi}"/>
+		
+		            <h:outputText value="Yatan: " />
+		            <h:outputText value="+#{musteriHesapHareketBean.selectedIslem.yatanMiktar}"/>
+		            
+		            <h:outputText value="Çekilen " />
+		            <h:outputText value="-#{musteriHesapHareketBean.selectedIslem.cekilenMiktar}"/>
+		            
+		            <h:outputText value="Bakiye: " />
+		            <h:outputText value="#{musteriHesapHareketBean.selectedIslem.hesapBakiye}"/>
+		            
+		            <h:outputText value="Hesap no: " />
+		            <h:outputText value="#{musteriHesapHareketBean.selectedIslem.islemHesapno}"/>
+		            
+		            <h:outputText value="Hesap: " />
+		            <h:outputText value="#{musteriHesapHareketBean.selectedIslem.islemHesabi}"/>
+		            
+		        </h:panelGrid>
+		    </p:dialog>
+		    
+   		</ui:define>
+	</ui:composition>
+    	
+</h:body>
+</html>

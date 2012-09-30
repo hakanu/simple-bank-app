@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memurları Listesi Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/p_yonetici_template.xhtml">
+		<ui:define name="search-form">
+					
+				<p:growl id="growl" showDetail="true" />
+				
+					
+				<p:panel id="ucretler" header="İşlem ücretlerini ayarla">
+					<h:panelGrid columns="2">
+					
+						<h:outputText value="Havale ücreti: "/>
+						<h:inputText value="#{yoneticiIslemUcretiBean.islemUcreti.havaleIslemUcreti}" required="true"
+							requiredMessage="Havale ücreti boş bırakılamaz"/>
+						
+						<h:outputText value="EFT ücreti: "/>
+						<h:inputText value="#{yoneticiIslemUcretiBean.islemUcreti.eftIslemUcreti}" required="true"
+							requiredMessage="EFT ücreti boş bırakılamaz"/>
+							
+						<h:outputText value="Para çekme ücreti: "/>
+						<h:inputText value="#{yoneticiIslemUcretiBean.islemUcreti.paraCekmeIslemUcreti}" required="true"
+							requiredMessage="Para çekme ücreti boş bırakılamaz"/>
+						
+						<h:outputText value="Para yatırma ücreti: "/>
+						<h:inputText value="#{yoneticiIslemUcretiBean.islemUcreti.paraYatirmaIslemUcreti}" required="true"
+							requiredMessage="Para yatırma ücreti boş bırakılamaz"/>
+						
+					</h:panelGrid>
+					
+					<h:commandLink value="Ücret(ler)i günle" update="ucretler" action="#{yoneticiIslemUcretiBean.islemUcretiGunle}">
+		                <!-- <f:param name="gunlenecekMusteriId" value="#{yoneticiIslemUcretiBean.gunlenecekMusteri.id}" /> -->
+		            </h:commandLink>
+					
+				</p:panel>
+				
+				
+				
+		</ui:define>
+		<ui:define name="dialogWindow">
+		
+	    
+	    </ui:define>
+	</ui:composition>
+    
+</h:body>
+</html>

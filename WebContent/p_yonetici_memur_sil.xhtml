@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memurları Listesi Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/p_yonetici_template.xhtml">
+		<ui:define name="search-form">
+				
+			<p:dataTable var="bankaMemuru" value="#{bankaMemuruSilBean.bankaMemurlari}" paginator="true" rows="10">
+                
+		        <f:facet name="header">
+		            Banka Şubelerinin Listesi
+		        </f:facet>
+		
+				<p:column sortBy="#{bankaMemuru.bankaMemuruId}">
+		            <f:facet name="header">
+		                <h:outputText value="Memur ID" />
+		            </f:facet>
+		            <h:outputText value="#{bankaMemuru.bankaMemuruId}" />
+		        </p:column>
+		
+		        <p:column sortBy="#{bankaMemuru.bankaMemuruAdi}">
+		            <f:facet name="header">
+		                <h:outputText value="Memur Adı" />
+		            </f:facet>
+		            <h:outputText value="#{bankaMemuru.bankaMemuruAdi}" />
+		        </p:column>
+		
+		        <p:column sortBy="#{bankaMemuru.bankaMemuruBaslangicTarihi}">
+		            <f:facet name="header">
+		                <h:outputText value="Başlangıç tarihi" />
+		            </f:facet>
+		            <h:outputText value="#{bankaMemuru.bankaMemuruBaslangicTarihi}" />
+		        </p:column>
+		        
+		        <p:column sortBy="#{bankaMemuru.sube.subeAdi}">
+		            <f:facet name="header">
+		                <h:outputText value="Çalıştığı şube adi" />
+		            </f:facet>
+		            <h:outputText value="#{bankaMemuru.sube.subeAdi}" />
+		        </p:column>
+		        
+		        <p:column sortBy="#{bankaMemuru.sube.subeSehir}">
+		            <f:facet name="header">
+		                <h:outputText value="Çalıştığı şube şehri" />
+		            </f:facet>
+		            <h:outputText value="#{bankaMemuru.sube.subeSehir}" />
+		        </p:column>
+		        
+		        <p:column style="width:32px">
+	            <p:commandButton update="display" oncomplete="carDialog.show()"
+	                    image="ui-icon ui-icon-search">
+	                <f:setPropertyActionListener value="#{bankaMemuru}"
+	                    target="#{bankaMemuruSilBean.selectedBankaMemuru}" />
+	            </p:commandButton>
+	        	</p:column>
+	        
+	        	<p:column style="width:32px">
+		            <h:commandLink value="Memuru sil" action="#{bankaMemuruSilBean.yonlendir}">
+		                <f:param name="silinecekBankaMemuruId" value="#{bankaMemuru.bankaMemuruId}" />
+		            </h:commandLink>
+	        	</p:column>
+	        	
+		    </p:dataTable>
+			
+	</ui:define>
+	<ui:define name="dialogWindow">
+		
+			<p:dialog header="Banka memuru ayrıntısı" widgetVar="carDialog" resizable="false" width="200" showEffect="explode" hideEffect="explode">
+		
+		        <h:panelGrid id="display" columns="2" cellpadding="4">
+		
+		
+		            <h:outputText value="ID: " />
+		            <h:outputText value="#{bankaMemuruSilBean.selectedBankaMemuru.bankaMemuruId}"/>
+		
+		            <h:outputText value="Adı: " />
+		            <h:outputText value="#{bankaMemuruSilBean.selectedBankaMemuru.bankaMemuruAdi}"/>
+		
+		            <h:outputText value="Başlangıç tarihi: " />
+		            <h:outputText value="#{bankaMemuruSilBean.selectedBankaMemuru.bankaMemuruBaslangicTarihi}"/>
+		            
+		            <h:outputText value="Şubesi: " />
+		            <h:outputText value="#{bankaMemuruSilBean.selectedBankaMemuru.sube.subeAdi}"/>
+		            
+		            <h:outputText value="Şube şehri: " />
+		            <h:outputText value="#{bankaMemuruSilBean.selectedBankaMemuru.sube.subeSehir}"/>
+		        </h:panelGrid>
+		    </p:dialog>
+	    
+	    </ui:define>
+	</ui:composition>
+    
+</h:body>
+</html>

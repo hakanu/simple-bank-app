@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Kullanıcı Hesap Silme Sayfası</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<div align="center">
+<table border="5">
+  <tr><th class="title">Kullanıcı Hesap Silme Sayfası</th></tr>
+</table>
+<p/>
+
+<h:form>
+
+
+<h:dataTable var="kitap" 
+		             value="#{bankingBean.hesapList}"
+		             border="1"
+		             styleClass="mainTable"
+		             captionClass="caption1"
+		             headerClass="heading"
+		             rowClasses="even,odd">
+		             
+		  <f:facet name="caption">Hesaplar</f:facet>
+		  
+		  
+		  
+		  <h:column>
+		    <f:facet name="header">Hesap kodu</f:facet>
+		    #{hesap.hesapno}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Hesap adı</f:facet>
+		    #{hesap.hesapAdi}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Bakiye</f:facet>
+		    #{hesap.hesapBalance}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Personel durumu</f:facet>
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Fiyat</f:facet>
+		  </h:column>
+		  
+		  <h:column>
+		  	<f:facet name="header">Sil</f:facet>
+		  	<h:commandLink value="Çıkar" action="#{bankingBean.userHesapSil}">
+		  		<f:param name="param_hesapNo" value="#{hesap.hesapno}"/>
+		  	</h:commandLink>
+		  </h:column>
+		  
+		</h:dataTable>
+		<p/>
+
+</h:form>
+
+</div></h:body></html>

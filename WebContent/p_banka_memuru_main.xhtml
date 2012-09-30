@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memuru Ana Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_banka_memuru_template.xhtml">
+		<ui:define name="search-form">
+		
+				<p:growl id="growl" showDetail="true" />
+				
+				<p:panel header="Internet Bankacılığı Uygulaması Banka Memuru" footer="">
+					<h:outputText value="Internet Bankacılığı Uygulaması'na banka memuru olarak giriş yaptınız. 
+						İşlem yapmak için sol menüyü kullanabilirsiniz."/> 
+				</p:panel>
+				
+				<p:accordionPanel autoHeight="false">
+					<p:tab title="Banka işlemleri">
+						<h:panelGrid columns="2" cellpadding="10">
+							<p:graphicImage value="/images/workstation.png" />
+							<h:outputText
+								value="Banka memuru, uygulamayı kullanarak müşteriler için hesaplarından para çekme ve 
+								hesaplarına para yatırma işlemlerini gerçekleştirebilir." />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Müşteri işlemleri">
+						<h:panelGrid columns="2" cellpadding="10">
+							<p:graphicImage value="/images/sliding_door.png" />
+							<h:outputText value="Banka memurları yetkileri çerçevesinde yeni müşteri ekleyebilir, varolan müşterileri silebilir veya varolan müşterilerin bilgilerini güncelleyebilir." />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Hesap işlemleri">
+						<h:panelGrid columns="2" cellpadding="10">
+							<p:graphicImage value="/images/address_book.png" />
+							<h:outputText value="Banka yöneticisi yetkileri çerçevesinde şubelere kayıtlı hesap listelerine yeni hesap ekleyebilir, varolan hesapları silebilir veya varolan hesapların 
+							bilgilerini güncelleyebilir." />
+						</h:panelGrid>
+					</p:tab>
+				</p:accordionPanel>
+							
+				
+		</ui:define>
+		<ui:define name="dialogWindow">
+		</ui:define>
+		
+	</ui:composition>
+		
+
+	
+</h:body>
+</html>

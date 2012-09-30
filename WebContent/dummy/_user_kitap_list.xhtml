@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Hesap listesi</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+<link href="./css/table-styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+
+	<h:body>
+		<table border="5" align="center">
+		  <tr><th class="title">Hesap listesi</th></tr>
+		</table>
+		
+		<p/>
+		
+		<p>Müşterinin sahip olduğu hesapların listesi</p>
+				
+		<h:dataTable var="kitap" 
+		             value="#{bankingBean.hesapList}"
+		             border="1"
+		             styleClass="mainTable"
+		             captionClass="caption1"
+		             headerClass="heading"
+		             rowClasses="even,odd">
+		  <f:facet name="caption">Hesaplar</f:facet>
+		  <h:column>
+		    <f:facet name="header">Hesap no</f:facet>
+		    #{hesap.hesapno}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Hesap adı</f:facet>
+		    #{hesap.hesapAdi}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Bakiye</f:facet>
+		    #{hesap.hesapBalance}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Test</f:facet>
+		    <h:commandLink value="dummy"/>
+		  </h:column>
+		  
+		</h:dataTable>
+		<p/>
+	
+	</h:body>
+</html>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memuru Ana Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_yonetici_template.xhtml">
+		<ui:define name="search-form">
+
+				<p:growl id="growl" showDetail="true" />
+				
+				<p:panel header="Silinecek müşterinin bilinen bilgilerini giriniz.
+					Herhangi bir kriter(ler)e göre arama yapılabilir" 
+					rendered="#{bankaMemuruMusteriSilBean.searchPanelState}">
+					
+					<h:messages errorClass="error"/>
+					<h:panelGrid columns="2">
+						<h:outputText value="Müşteri Adı: " />
+						<h:inputText label="adi" value="#{bankaMemuruMusteriSilBean.silinecekMusteri.adi}" />
+						
+						<h:outputText value="Müşteri Soyadı: " />
+						<h:inputText label="soyadi" value="#{bankaMemuruMusteriSilBean.silinecekMusteri.soyadi}" />
+						
+						<h:outputText value="Üye Adı: " />
+						<h:inputText label="uyeAdi" value="#{bankaMemuruMusteriSilBean.silinecekMusteri.uyeAdi}" />
+						
+						<h:outputText value="Müşteri Mail Adresi: " />
+						<h:inputText label="mail" value="#{bankaMemuruMusteriSilBean.silinecekMusteri.mail}" />
+						
+						<h:outputText value="Müşteri Web Adresi: " />
+						<h:inputText label="web" value="#{bankaMemuruMusteriSilBean.silinecekMusteri.web}" />
+						
+						<h:commandButton value="Submit" action="#{bankaMemuruMusteriSilBean.musterileriBul}"/>
+						
+						<p:commandButton value="Temizle" type="reset"/>
+						
+						
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:ajaxStatus style="width:16px;height:16px;">
+					<f:facet name="start">
+						<h:graphicImage value="../design/ajaxloading.gif" />
+			 		</f:facet>
+					
+					<f:facet name="complete">
+						<h:outputText value="" />
+					</f:facet>
+				</p:ajaxStatus>
+					
+				<p:dataTable var="musteri" value="#{bankaMemuruMusteriSilBean.musteriler}" paginator="true" rows="10" rendered="#{bankaMemuruMusteriSilBean.renderState}">
+	                 
+				        <f:facet name="header">
+				            Bulunan Müşterilerin Listesi
+				        </f:facet>
+				
+						<p:column sortBy="#{musteri.id}">
+				            <f:facet name="header">
+				                <h:outputText value="Kodu" />
+				            </f:facet>
+				            <h:outputText value="#{musteri.id}" />
+				        </p:column>
+				
+				        <p:column sortBy="#{musteri.adi}">
+				            <f:facet name="header">
+				                <h:outputText value="Adı" />
+				            </f:facet>
+				            <h:outputText value="#{musteri.adi}" />
+				        </p:column>
+						
+				        <p:column sortBy="#{musteri.soyadi}">
+				            <f:facet name="header">
+				                <h:outputText value="Soyadı" />
+				            </f:facet>
+				            <h:outputText value="#{musteri.soyadi}" />
+				        </p:column>
+				
+				        <p:column sortBy="#{musteri.uyeAdi}">
+				            <f:facet name="header">
+				                <h:outputText value="Üye Adı" />
+				            </f:facet>
+				            <h:outputText value="#{musteri.uyeAdi}" />
+				        </p:column>
+												
+				        <p:column sortBy="#{musteri.mail}">
+				            <f:facet name="header">
+				                <h:outputText value="Mail" />
+				            </f:facet>
+				            <h:outputText value="#{musteri.mail}" />
+				        </p:column>
+					
+				        <p:column sortBy="#{musteri.web}">
+				            <f:facet name="header">
+				                <h:outputText value="Adresi" />
+				            </f:facet>
+				            <h:outputText value="#{musteri.web}" />
+				        </p:column>
+			        
+			        	<p:column style="width:32px">
+				            <h:commandLink value="Müşteriyi Sil" action="#{bankaMemuruMusteriSilBean.yonlendir}">
+				                <f:param name="silinecekMusteriId" value="#{musteri.id}" />
+				            </h:commandLink>
+			        	</p:column>
+		        	
+				        <f:facet name="header">
+			            	<p:commandButton value="Müşteri sil" update="display" image="ui-icon ui-icon-search" actionListener="#{bankaMemuruMusteriSilBean.musteriSil}"/>
+		            	</f:facet>
+		            	
+				</p:dataTable>
+				<p:panel rendered="#{bankaMemuruMusteriSilBean.renderState}">	
+						<h:commandButton value="Yeniden Ara" action="#{bankaMemuruMusteriSilBean.yenidenAra}"/>
+				</p:panel>
+
+		</ui:define>
+	
+	</ui:composition>
+	
+
+	
+</h:body>
+</html>

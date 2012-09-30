@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.prime.com.tr/ui">
+		
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Banka Yöneticisi Ana Sayfası</title>
+		<!-- <link type="text/css" rel="stylesheet" href="./css/start/skin.css"/> -->
+		<!-- <link type="text/css" rel="stylesheet" href="./css/dot-luv/skin.css"/> -->
+		<link type="text/css" rel="stylesheet" href="./css/trontastic/skin.css"/>
+    </h:head>
+    <h:body> 
+        <ui:insert />
+        
+        <h:form>
+        	<div align="center">
+        	<p:graphicImage value="/images/banka/son.png" />
+			<p:menubar>
+				<p:submenu>
+					<f:facet name="label">
+						<p:menuitem value="Ana Sayfa" url="p_yonetici_main.jsf" />
+					</f:facet>
+				</p:submenu>
+				
+				<p:submenu>
+					<f:facet name="label">
+						<p:menuitem value="Hakkında" url="p_about.jsf" />
+					</f:facet>
+				</p:submenu>
+				
+				<p:submenu>
+					<f:facet name="label">
+						<p:menuitem value="Nasıl kullanılır?" url="p_how_to_use.jsf" />
+					</f:facet>
+				</p:submenu>
+				
+				<p:submenu>
+					<f:facet name="label">
+						<p:menuitem value="Şubeler" url="p_subeler.jsf" />
+					</f:facet>
+				</p:submenu>
+				
+			</p:menubar>
+			</div>
+			<p:graphicImage value="/images/shutdown_kucuk.png" />
+			<h:commandLink value="Çıkış yap" action="#{logout.doLogout}" />
+			<p/><p/><p/>
+			
+		<div align="center">
+			<p:layout style="width:1000px;height:1000px;">
+				<p:layoutUnit position="left" width="300" resizable="true" minWidth="50" maxWidth="200">
+					<p:menu style="width:300px" ajax="false">
+						<p:submenu label="Şube işlemleri" ajax="false">
+							<p:menuitem value="Şubeleri listele" url="p_yonetici_sube_list.jsf" icon="/images/save.png" ajax="false"/>
+							<p:menuitem value="Yeni şube ekle" url="p_yonetici_sube_ekle.jsf" icon="/images/update.png" ajax="false"/>
+							<p:menuitem value="Şube sil" url="p_yonetici_sube_sil.jsf" icon="/images/update.png" ajax="false"/>
+							<p:menuitem value="Şube bilgisi güncelle" url="p_yonetici_sube_gunle.jsf" icon="/images/update.png" ajax="false"/>
+						</p:submenu>
+						<p:submenu label="Müşteri işlemleri" ajax="false">
+							<!-- <p:menuitem value="Müşterileri listele" url="_yonetici_kitap_list.jsf" icon="/images/save.png" ajax="false"/> -->
+							<p:menuitem value="Müşteri ekle" url="p_yonetici_musteri_ekle.jsf" icon="/images/update.png" ajax="false"/>
+							<p:menuitem value="Müşteri sil" url="p_yonetici_musteri_sil.jsf" icon="/images/update.png" ajax="false"/>
+							<p:menuitem value="Müşteri bilgisi güncelle" url="p_yonetici_musteri_gunle.jsf" icon="/images/update.png" ajax="false"/>
+						</p:submenu>
+						<p:submenu label="Banka memuru işlemleri" ajax="false">
+							<p:menuitem value="Banka memurlarını listele" url="p_yonetici_memur_list.jsf" icon="/images/save.png" ajax="false"/>
+							<p:menuitem value="Banka memuru ekle" url="p_yonetici_memur_ekle.jsf" icon="/images/update.png" ajax="false"/>
+							<p:menuitem value="Banka memuru sil" url="p_yonetici_memur_sil.jsf" icon="/images/update.png" ajax="false"/>
+							<p:menuitem value="Banka memuru bilgisi güncelle" url="p_yonetici_memur_gunle.jsf" icon="/images/update.png" ajax="false"/>
+						</p:submenu>
+						
+						<p:submenu label="Banka işlemleri" ajax="false">
+							<p:menuitem value="İşlem ücretlendirmesi" url="p_yonetici_islem_ucreti_ayarla.jsf" icon="/images/save.png" ajax="false"/>
+						</p:submenu>
+					</p:menu>
+				</p:layoutUnit>
+				
+				<p:layoutUnit position="center">
+					<p:panel header="Internet Bankacılığı Uygulaması Yöneticisi" footer="">
+						<h:outputText value="Internet Bankacılığı Uygulaması'na sistem yöneticisi olarak giriş yaptınız. 
+							İşlem yapmak için sol menüyü kullanabilirsiniz."/> 
+					</p:panel>
+					
+					<ui:insert name="search-form">
+					</ui:insert>
+					
+				</p:layoutUnit>
+			
+			</p:layout>
+			</div>
+			
+			
+			
+		</h:form>
+		
+		<ui:insert name="dialogWindow">
+		</ui:insert>
+		
+    </h:body>
+</html>

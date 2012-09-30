@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memuru Ana Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_musteri_template.xhtml">
+		<ui:define name="search-form">
+
+				
+				<p:panel header="Müşteri bilgileriniz aşağıdaki gibidir. Güncelleme yapmak için 'Bilgi Güncelle' butonuna basabilirsiniz">
+				</p:panel>
+				
+				<p:ajaxStatus style="width:16px;height:16px;">
+					<f:facet name="start">
+						<h:graphicImage value="../design/ajaxloading.gif" />
+					</f:facet>
+					
+					<f:facet name="complete">
+						<h:outputText value="" />
+					</f:facet>
+				</p:ajaxStatus>
+				
+				<p:dataTable var="musteri" value="#{musteriBilgiGunleBean.musteriler}" paginator="true" rows="10">
+                 
+			        <f:facet name="header">
+			           Müşteri Bilgileri
+			        </f:facet>
+			
+					<p:column sortBy="#{musteri.id}">
+			            <f:facet name="header">
+			                <h:outputText value="Müşteri Kodu" />
+			            </f:facet>
+			            <h:outputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.id}" />
+			        </p:column>
+			
+			        <p:column sortBy="#{musteri.adi}">
+			            <f:facet name="header">
+			                <h:outputText value="Müşteri Adı" />
+			            </f:facet>
+			            <h:outputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.adi}" />
+			        </p:column>
+					
+			        <p:column sortBy="#{musteri.soyadi}">
+			            <f:facet name="header">
+			                <h:outputText value="Müşteri Soyadı" />
+			            </f:facet>
+			            <h:outputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.soyadi}" />
+			        </p:column>
+			
+			        <p:column sortBy="#{musteri.uyeAdi}">
+			            <f:facet name="header">
+			                <h:outputText value="Müşteri Üye Adı" />
+			            </f:facet>
+			            <h:outputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.uyeAdi}" />
+			        </p:column>
+											
+			        <p:column sortBy="#{musteri.mail}">
+			            <f:facet name="header">
+			                <h:outputText value="Müşteri Mail Adresi" />
+			            </f:facet>
+			            <h:outputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.mail}" />
+			        </p:column>
+				
+			        <p:column sortBy="#{musteri.web}">
+			            <f:facet name="header">
+			                <h:outputText value="Müşteri Web Adresi" />
+			            </f:facet>
+			            <h:outputText value="#{musteriBilgiGunleBean.gunlenecekMusteri.web}" />
+			        </p:column>
+		        
+		        	<p:column style="width:32px">
+			            <h:commandLink value="Bilgi Günle" action="#{musteriBilgiGunleBean.yonlendir}">
+			                <f:param name="gunlenecekMusteriId" value="#{musteriBilgiGunleBean.gunlenecekMusteri.id}" />
+			            </h:commandLink>
+		        	</p:column>
+			        
+			    </p:dataTable>		
+		</ui:define>
+	<ui:define name="dialogWindow">
+	</ui:define>
+	
+	</ui:composition>
+	
+
+	
+</h:body>
+</html>

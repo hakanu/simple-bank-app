@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.prime.com.tr/ui">
+		
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Internet Bankacılığı Uygulaması</title>
+		<!-- <link type="text/css" rel="stylesheet" href="./css/start/skin.css"/> -->
+		<!-- <link type="text/css" rel="stylesheet" href="./css/dot-luv/skin.css"/> -->
+		<link type="text/css" rel="stylesheet" href="./css/trontastic/skin.css"/>
+		
+    </h:head>
+    <h:body> 
+        <ui:insert />
+        
+        <h:form id="genelForm">
+        	<!-- <p:idleMonitor timeout="5000" update="message" idleListener="#{idleMonitorController.idleListener}"/> -->
+        	<p:graphicImage value="/images/banka/son.png" />
+			<p:menubar>
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Ana Sayfa" url="index.jsp" />
+				</f:facet>
+			</p:submenu>
+			
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Hakkında" url="p_about.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Nasıl kullanılır?" url="p_how_to_use.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Şubeler" url="p_subeler.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+		</p:menubar>	
+	
+		<p/><p/><p/>
+		
+		
+		<ui:insert name="search-form">
+		</ui:insert>
+			
+			
+			
+			
+		</h:form>
+		
+		<ui:insert name="dialogWindow">
+		</ui:insert>
+		
+		<h>Her hakkı saklıdır.</h>
+		<h>BBM 2011©</h>
+		<h>Hakan UYSAL</h>
+		<h>Kadir Tuna</h>
+		
+    </h:body>
+</html>

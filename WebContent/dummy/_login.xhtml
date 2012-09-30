@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head><title>Kullanıcı girişi</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+		<div align="center">
+			<table border="5">
+			  <tr><th class="title">Kullanıcı girişi</th></tr>
+			</table>
+		<p/>
+		
+			<h:form id="loginForm">
+				<fieldset>
+				  <legend>Kullanıcı girişinizi yapınız(User için-ID:user password:user; Admin için-ID:admin password:admin)</legend>
+				  <tr>
+				  	<td>
+					  Kullanıcı adı: 
+					  <h:inputText value="#{login.customerId}"/><br/>
+					</td>
+					
+					<td>
+					  Şifre: 
+					  <h:inputSecret value="#{login.password}"/><br/>
+				  	</td>
+				  </tr>
+				  <h:commandButton value="Giriş yap!" action="#{login.checkUserLogin}">
+				    <f:ajax execute="@form"   
+				            render="loginForm:ajaxMessage"/>
+				  </h:commandButton>
+				  <br/>
+				  <h2><h:outputText value="#{login.message}" id="ajaxMessage"/></h2>
+				</fieldset>
+			</h:form>
+		</div>
+	</h:body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Kullanıcı Hesap Açma Sayfası</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<div align="center">
+<table border="5">
+  <tr><th class="title">Kullanıcı Hesap Açma Sayfası</th></tr>
+</table>
+<p/>
+
+<h:form>
+
+
+<h3>
+  Hesap açmak istediğiniz şubeyi seçiniz   
+</h3>
+
+<h:dataTable var="kitap" 
+		             value="#{bankingBean.kitapList}"
+		             border="1"
+		             styleClass="mainTable"
+		             captionClass="caption1"
+		             headerClass="heading"
+		             rowClasses="even,odd">
+		             
+		  <f:facet name="caption">Şubeler</f:facet>
+		  
+		  <h:column>
+		    <f:facet name="header">Şube kodu</f:facet>
+		    #{kitap.isbn}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Şube adı</f:facet>
+		    #{kitap.baslik}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Şube şehri</f:facet>
+		    #{kitap.yazar}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Personel durumu</f:facet>
+		    #{kitap.almaizni}
+		  </h:column>
+		  <h:column>
+		    <f:facet name="header">Fiyat</f:facet>
+		    #{kitap.fiyat}
+		  </h:column>
+		  
+		  <h:column>
+		  	<f:facet name="header">Ekle</f:facet>
+		  	<h:commandLink value="Ekle" action="#{bankingBean.userHesapSubeSec}">
+		  		<f:param name="ISBN" value="#{kitap.kitapno}"/>
+		  	</h:commandLink>
+		  </h:column>
+		  
+		</h:dataTable>
+		<p/>
+
+</h:form>
+
+</div></h:body></html>

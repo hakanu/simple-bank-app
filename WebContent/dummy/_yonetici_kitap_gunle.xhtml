@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head><title>Banka Yöneticisi Şube Günleme</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+<link href="./css/table-styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<table border="5" align="center">
+  <tr><th class="title">Şube bilgilerini güncelle</th></tr>
+</table>
+<p/>
+<p>Şube bilgilerini değiştirme ekranına hoşgeldiniz</p><p/>
+
+<h:form>
+<p/>
+<h:dataTable var="kitap" 
+             value="#{bankingBean.kitapList}"
+             border="1"
+             id="kitapList"
+             styleClass="mainTable"
+             captionClass="caption1"
+             headerClass="heading"
+             rowClasses="even,odd">
+             
+  <f:facet name="caption">Şubeler</f:facet>
+  
+  <h:column>
+    <f:facet name="header">Şube kodu</f:facet>
+    #{kitap.isbn}
+  </h:column>
+  
+  <h:column>
+    <f:facet name="header">Şube adı</f:facet>
+    #{kitap.baslik}
+  </h:column>
+  
+  <h:column>
+    <f:facet name="header">Şube şehri</f:facet>
+    #{kitap.yazar}
+    
+  </h:column>
+  
+  <h:column>
+    <f:facet name="header">Personel durumu</f:facet>
+    #{kitap.almaizni}
+  </h:column>
+  
+  <h:column>
+    <f:facet name="header">Fiyat</f:facet>
+    #{kitap.fiyat}
+  </h:column>
+  
+  <h:column>
+  	<f:facet name="header">Günle</f:facet>
+	<h:commandLink value="Gunle" action="#{bankingBean.kitapGunleYonlendirme}">
+		<f:param name="ISBN" value="#{kitap.kitapno}"/>
+	</h:commandLink>>
+  </h:column>
+	
+</h:dataTable>
+</h:form>
+</h:body></html>

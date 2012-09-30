@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Kullanıcı kitap arama sayfası</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<div align="center">
+<table border="5">
+  <tr><th class="title">Kullanıcı kitap arama sayfası</th></tr>
+</table>
+<p/>
+
+
+
+<h:form>
+
+	<p>
+	Aranılacak kitap başlığını giriniz: 
+	<h:inputText value="#{bankingBean.baslikKriteri}"></h:inputText>
+	</p>
+	
+	<p>
+	Aranılacak kitap yazarını giriniz: 
+	<h:inputText value="#{bankingBean.yazarKriteri}"></h:inputText>
+	</p>
+	
+	<p>
+	Aranılacak fiyat aralığını giriniz: 
+	</p>
+	<p>
+	Fiyat alt sınırı:
+	<h:inputText value="#{bankingBean.altFiyatKriteri}"></h:inputText>
+	Fiyat üst sınırı:
+	<h:inputText value="#{bankingBean.ustFiyatKriteri}"></h:inputText>
+	</p>
+	
+	
+<fieldset>
+  <h:commandButton value="Ara" action="#{bankingBean.userKitapAra}"/>
+  
+ 	<h:dataTable var="kitap" 
+	             value="#{bankingBean.kitapList}"
+	             border="1"
+	             styleClass="mainTable"
+	             captionClass="caption1"
+	             headerClass="heading"
+	             rowClasses="even,odd">
+	             
+	  <f:facet name="caption">Kitaplar</f:facet>
+	  <h:column>
+	    <f:facet name="header">ISBN</f:facet>
+	    #{kitap.isbn}
+	  </h:column>
+	  <h:column>
+	    <f:facet name="header">Başlık</f:facet>
+	    #{kitap.baslik}
+	  </h:column>
+	  <h:column>
+	    <f:facet name="header">Yazar</f:facet>
+	    #{kitap.yazar}
+	  </h:column>
+	  <h:column>
+	    <f:facet name="header">Alma izni</f:facet>
+	    #{kitap.almaizni}
+	  </h:column>
+	  <h:column>
+		 <f:facet name="header">Fiyat</f:facet>
+		 #{kitap.fiyat}
+	  </h:column>
+		  
+	</h:dataTable>
+	
+</fieldset>
+</h:form>
+</div></h:body></html>

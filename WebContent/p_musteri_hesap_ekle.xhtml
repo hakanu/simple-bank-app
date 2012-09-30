@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Müşteri Ana Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_musteri_template.xhtml">
+		<ui:define name="search-form">
+				
+				<p:panel header="Yeni hesap ekle">
+					<h:panelGrid columns="2">
+					
+						<h:outputLabel value="Yeni hesabın adı : *" for="txt_title"></h:outputLabel>
+						<h:inputText id="txt_title" value="#{hesapEkleBean.eklenecekHesap.hesapAdi}" required="true"
+							requiredMessage="Hesap adını boş bırakamazsınız"/>
+						<h:outputLabel value="Şubenin : "></h:outputLabel>
+						<p/>
+						<h:outputLabel value="Şube no : #{hesapEkleBean.hesapEklenecekSube.subeId}"></h:outputLabel>
+						<p/>
+						<h:outputLabel value="Şube adı : #{hesapEkleBean.hesapEklenecekSube.subeAdi}"></h:outputLabel>
+						<p/>
+						<h:outputLabel value="Şube şehri : #{hesapEkleBean.hesapEklenecekSube.subeSehir}"></h:outputLabel>
+						<p/>
+						
+						<p:commandButton value="Ekle" update="hesapTable" action="#{hesapEkleBean.hesapEkle}" >
+							<p:collector value="#{hesapEkleBean.eklenecekHesap}" addTo="#{hesapEkleBean.hesaplar}" />
+							<f:param name="hesapEklenecekSubeId" value="#{hesapEkleBean.hesapEklenecekSube.subeId}" />
+						</p:commandButton>
+						
+						<p:commandButton value="Temizle" type="reset"/>
+							
+					</h:panelGrid>
+				</p:panel>
+				
+				<p:outputPanel id="hesapTable">
+					<p:growl id="growl" showDetail="true" />
+					<p:dataTable var="hesap" value="#{hesapEkleBean.hesaplar}" paginator="true" rows="10">
+	                 
+				        <f:facet name="header">
+				            Hesaplarım
+				        </f:facet>
+				
+						<p:column sortBy="#{hesap.hesapno}">
+				            <f:facet name="header">
+				                <h:outputText value="Hesap No" />
+				            </f:facet>
+				            <h:outputText value="#{hesap.hesapno}" />
+				        </p:column>
+				
+				        <p:column sortBy="#{hesap.hesapAdi}">
+				            <f:facet name="header">
+				                <h:outputText value="Hesap adı" />
+				            </f:facet>
+				            <h:outputText value="#{hesap.hesapAdi}" />
+				        </p:column>
+				
+				        <p:column sortBy="#{hesap.hesapBalance}">
+				            <f:facet name="header">
+				                <h:outputText value="Bakiye" />
+				            </f:facet>
+				            <h:outputText value="#{hesap.hesapBalance}" />
+				        </p:column>
+				        
+				        <p:column sortBy="#{hesap.sube.subeAdi}">
+				            <f:facet name="header">
+				                <h:outputText value="Şubesi" />
+				            </f:facet>
+				            <h:outputText value="#{hesap.sube.subeAdi}" />
+				        </p:column>
+				        
+				        <p:column sortBy="#{hesap.sube.subeSehir}">
+				            <f:facet name="header">
+				                <h:outputText value="Şehir" />
+				            </f:facet>
+				            <h:outputText value="#{hesap.sube.subeSehir}" />
+				        </p:column>
+				        
+				        <p:column style="width:32px">
+			            <p:commandButton update="display" oncomplete="carDialog.show()" image="ui-icon ui-icon-search">
+			                <f:setPropertyActionListener value="#{hesap}" target="#{hesapEkleBean.selectedHesap}" />
+			            </p:commandButton>
+			        	</p:column>
+			        
+				    </p:dataTable>	
+				</p:outputPanel>
+				
+		</ui:define>
+		<ui:define name="dialogWindow">
+		
+		<p:dialog header="Hesap ayrıntısı" widgetVar="carDialog" resizable="false" width="200" showEffect="explode" hideEffect="explode">
+	
+	        <h:panelGrid id="display" columns="2" cellpadding="4">
+	
+	            <h:outputText value="ID: " />
+	            <h:outputText value="#{hesapEkleBean.selectedHesap.hesapno}"/>
+	
+	            <h:outputText value="Adı: " />
+	            <h:outputText value="#{hesapEkleBean.selectedHesap.hesapAdi}"/>
+	
+	            <h:outputText value="Bakiye: " />
+	            <h:outputText value="#{hesapEkleBean.selectedHesap.hesapBalance}"/>
+	            
+	            <h:outputText value="Şubesi: " />
+	            <h:outputText value="#{hesapEkleBean.selectedHesap.sube.subeAdi}"/>
+	            
+	            <h:outputText value="Şehir: " />
+	            <h:outputText value="#{hesapEkleBean.selectedHesap.sube.subeSehir}"/>
+	        </h:panelGrid>
+	    </p:dialog>
+	    
+	    </ui:define>
+	</ui:composition>
+    
+</h:body>
+</html>

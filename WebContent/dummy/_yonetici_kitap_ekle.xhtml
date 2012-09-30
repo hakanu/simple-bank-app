@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head><title>Banka Yöneticisi Şube Ekleme Sayfası</title>
+<link href="./css/styles.css" 
+      rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<div align="center">
+<table border="5">
+  <tr><th class="title">Banka Yöneticisi Şube Ekleme Sayfası</th></tr>
+</table>
+<p/>
+
+<h:form>
+
+	<h:outputText value="Şube başlığını giriniz: "/>
+	<h:inputText value="#{bankingBean.kitap.baslik}"/>
+	<p/>
+	
+	<h:outputText value="Şube şehrini giriniz: "/>
+	<h:inputText value="#{bankingBean.kitap.yazar}"/>
+	<p/>
+	
+	<h:outputText value="Şube kodunu giriniz: "/>
+	<h:inputText value="#{bankingBean.kitap.isbn}"/>
+	<p/>
+	
+
+<fieldset>
+  <h:commandButton value="Şube ekle" action="#{bankingBean.kitapEkleYonlendirme}"/>     
+</fieldset>
+
+
+</h:form>
+
+</div></h:body></html>

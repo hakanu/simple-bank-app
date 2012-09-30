@@ -1,0 +1,38 @@
+.mainTable {
+    margin-left: auto;
+	 margin-right: auto;
+}
+.caption1 {
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 24px;
+	color: blue;
+}
+.caption2 {
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 24px;
+	color: red;
+}
+.heading {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    background-color: silver;
+    text-align: center;
+}
+.even {
+    font-family: Times New Roman, serif;
+    font-size: 18px;
+    color: black;
+    background-color: white;
+    text-indent: 20px;
+}
+.odd {
+    font-family: Times New Roman, serif;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    text-indent: 20px;
+}

@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+	
+<h:head>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+
+<h:body>
+	
+	
+	<ui:composition template="/templates/p_genel_template.xhtml">
+		<ui:define name="search-form">	
+		
+		<p:growl id="growl" showDetail="true" />
+				<p:panel id="panel" header="Kullanıcı Girişi" style="margin-bottom:10px;">
+					<p:messages />
+					<h:panelGrid columns="3">
+						<h:outputLabel for="uyeAdi" value="Kullanıcı adı: *" />
+						<h:inputText id="uyeAdi" value="#{login.customerId}" label="uyeAdi" required="true" 
+			            	requiredMessage="Memur başlangıç tarihini boş bırakamazsınız">
+							<f:validateLength minimum="2" />
+						</h:inputText>
+						<p:message for="uyeAdi" />
+			
+						<h:outputLabel for="sifre" value="Şifre: *" />
+						<h:inputSecret id="sifre" value="#{login.password}" label="Şifre" inputType="hidden" required="true" 
+			            	requiredMessage="Memur başlangıç tarihini boş bırakamazsınız"/>
+						<p:message for="sifre" />
+					</h:panelGrid>
+				</p:panel>
+			
+				<p:commandButton value="Giriş yap" action="#{login.checkUserLogin}" >
+					<f:ajax execute="@form" render="genelForm:ajaxMessage"/>
+				</p:commandButton>
+				
+				<p:commandButton value="Yeni kullanıcı kaydı" action="p_user_register.jsf" ajax="false"/>
+			
+			<h2><h:outputText value="#{login.message}" id="ajaxMessage"/></h2>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

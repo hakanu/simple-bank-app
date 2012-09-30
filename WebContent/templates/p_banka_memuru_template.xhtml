@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.prime.com.tr/ui">
+		
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Banka Memuru İşlem Sayfası</title>
+		<!-- <link type="text/css" rel="stylesheet" href="./css/start/skin.css"/> -->
+		<!-- <link type="text/css" rel="stylesheet" href="./css/dot-luv/skin.css"/> -->
+		<link type="text/css" rel="stylesheet" href="./css/trontastic/skin.css"/>
+    </h:head>
+    <h:body> 
+        <ui:insert />
+        
+        <h:form>
+        
+       
+		<p:graphicImage value="/images/banka/son.png" />
+		<p:menubar>
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Ana Sayfa" url="p_banka_memuru_main.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Hakkında" url="p_about.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Nasıl kullanılır?" url="p_how_to_use.jsf" />
+				</f:facet>
+			</p:submenu>
+			
+			<p:submenu>
+				<f:facet name="label">
+					<p:menuitem value="Şubeler" url="p_subeler.jsf" />
+				</f:facet>
+			</p:submenu>
+		</p:menubar>	
+		<p:graphicImage value="/images/shutdown_kucuk.png" />
+		<h:commandLink value="Çıkış yap" action="#{logout.doLogout}">		</h:commandLink>
+		<p/><p/><p/>
+		
+		
+		
+		<p:layout style="width:1000px;height:1000px;">
+			<p:layoutUnit position="left" width="300" resizable="true" minWidth="50" maxWidth="200">
+					<p:menu style="width:300px" ajax="false">
+					<p:submenu label="Banka işlemleri" ajax="false">
+						<p:menuitem value="Para çekme" url="p_banka_memuru_para_cekme.jsf" icon="/images/save.png" ajax="false"/>
+						<p:menuitem value="Para yatırma" url="p_banka_memuru_para_yatirma.jsf" icon="/images/update.png" ajax="false"/>
+					</p:submenu>
+					<p:submenu label="Müşteri işlemleri" ajax="false">
+						<p:menuitem value="Müşteri ekle" url="p_banka_memuru_musteri_ekle.jsf" icon="/images/update.png" ajax="false"/>
+						<p:menuitem value="Müşteri sil" url="p_banka_memuru_musteri_sil.jsf" icon="/images/update.png" ajax="false"/>
+						<p:menuitem value="Müşteri bilgisi güncelle" url="p_banka_memuru_musteri_gunle.jsf" icon="/images/update.png" ajax="false"/>
+					</p:submenu>
+					<p:submenu label="Hesap işlemleri" ajax="false">
+						<p:menuitem value="Hesap açma" url="p_banka_memuru_hesap_ekle.jsf" icon="/images/update.png" ajax="false"/>
+						<p:menuitem value="Hesap kapatma" url="p_banka_memuru_hesap_sil.jsf" icon="/images/update.png" ajax="false"/>
+					</p:submenu>
+				</p:menu>
+			</p:layoutUnit>
+		    			
+			<p:layoutUnit position="center">
+				<p:panel header="Internet Bankacılığı Uygulaması Banka Memuru" footer="">
+					<h:outputText value="Internet Bankacılığı Uygulaması'nı kullanarak, banka memuru olarak 
+					bankaya yeni müşteri ekleme sayfasına hoşgeldiniz."/> 
+				</p:panel>
+					
+					<ui:insert name="search-form">
+					</ui:insert>
+					
+				</p:layoutUnit>
+			
+			</p:layout>
+			
+			
+			
+			
+		</h:form>
+		
+		<ui:insert name="dialogWindow">
+		</ui:insert>
+		
+    </h:body>
+</html>

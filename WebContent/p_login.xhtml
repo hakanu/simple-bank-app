@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	
+</h:head>
+<h:body>
+	<h:form prependId="false">
+		<h:messages />
+		<p:panel header="Yeni Misafir">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="isim : *" for="txt_isim"></h:outputLabel>
+				<h:inputText id="txt_isim" value="#{login.customerId}" required="true"/>
+
+				<h:outputLabel value="Sayi : *" for="txt_sayi"></h:outputLabel>
+				<h:inputText id="txt_sayi" value=""
+					required="true" />
+
+				<h:outputText value="" />
+
+				<h:panelGroup>
+					<p:commandButton value="Kaydet" actionListener="#{login.deneme}" update="tablo,txt_isim,txt_sayi" async="true"/>
+				</h:panelGroup>
+			</h:panelGrid>
+		</p:panel>
+		<p:commandButton value="Kaydet" actionListener="#{login.deneme}" ajax="false"/>
+		<p:commandButton value="Kaydet" actionListener="#{login.checkUserLogin}" ajax="false"/>
+	</h:form>
+	
+</h:body>
+</html>

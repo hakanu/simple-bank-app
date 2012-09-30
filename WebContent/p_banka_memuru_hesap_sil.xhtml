@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Banka Memuru Ana Sayfası</title>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+<h:body>
+
+	<ui:composition template="/templates/p_banka_memuru_template.xhtml">
+		<ui:define name="search-form">
+		
+			<p:growl id="growl" showDetail="true" />
+			
+			<p:panel header="Para çekmek istediğiniz hesabın numarasını giriniz" rendered = "#{bankaMemuruHesapSilBean.hesapNoRender}">
+					<h:messages errorClass="error"/>
+					<h:panelGrid columns="2">
+						<h:outputText value="Hesap Numarası: " />
+						<h:inputText label="Hesap Numarası" value="#{bankaMemuruHesapSilBean.bulunacakHesapNo}" />
+							
+						<h:commandButton value="Submit" action="#{bankaMemuruHesapSilBean.HesapBul}"/>
+							
+						<p:commandButton value="Temizle" type="reset"/>
+							
+							
+					</h:panelGrid>
+			</p:panel>
+				
+			<p:ajaxStatus style="width:16px;height:16px;">
+				<f:facet name="start">
+					<h:graphicImage value="../design/ajaxloading.gif" />
+				</f:facet>
+						
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+				
+			<p:panel header="Silinecek hesap ayrıntıları:" footer="" rendered = "#{bankaMemuruHesapSilBean.detailRender}">
+				
+				<h:outputText value="Not: İçinde bakiye bulunan hesaplar silinemez" />
+				<h:panelGrid columns="2">
+					<h:outputText value="ID: " />
+			        <h:outputText value="#{bankaMemuruHesapSilBean.silinecekHesap.hesapno}"/>
+						
+			        <h:outputText value="Adı: " />
+			        <h:outputText value="#{bankaMemuruHesapSilBean.silinecekHesap.hesapAdi}"/>
+						
+			        <h:outputText value="Bakiyesi: " />
+			        <h:outputText value="#{bankaMemuruHesapSilBean.silinecekHesap.hesapBalance}"/>
+						
+			        <h:outputText value="Şubesi: " />
+			        <h:outputText value="#{bankaMemuruHesapSilBean.silinecekHesap.sube.subeAdi}"/>
+						
+						
+			        <h:commandLink value="Bu hesabı sil" update="musteriHesapTable" action="#{bankaMemuruHesapSilBean.hesapSil}">
+			            <f:param name="silinecekHesapId" value="#{bankaMemuruHesapSilBean.silinecekHesap.hesapno}" />
+			        </h:commandLink>
+			        
+			        <h:commandButton value="Geri" action="#{bankaMemuruHesapSilBean.sifirla}"/>
+		        </h:panelGrid>
+			</p:panel>
+			
+   		</ui:define>
+   		
+	</ui:composition>
+    	
+</h:body>
+</html>

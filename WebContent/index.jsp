@@ -1,0 +1,1 @@
+<%response.sendRedirect("p_loginAjax.jsf");%>

@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+	
+<h:head>
+	<link type="text/css" rel="stylesheet" href="./css/start/skin.css"/>
+</h:head>
+
+<h:body>
+	
+	
+	<ui:composition template="/templates/p_genel_template.xhtml">
+		<ui:define name="search-form">	
+		
+		<p/><p/><p/>
+		
+			<p:commandButton value="Giriş yap" action="p_loginn.jsf" ajax="false"/>
+			<p:commandButton value="Müşteri ana sayfa" action="p_musteri_main.jsf" ajax="false"/>
+			<p:commandButton value="Banka memuru ana sayfa" action="p_banka_memuru_main.jsf" ajax="false"/>
+			<p:commandButton value="Yönetici ana sayfa" action="p_yonetici_main.jsf" ajax="false"/>
+	
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

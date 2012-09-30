@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<h:body>
+        <ui:composition template="/templates/p_genel_template.xhtml">
+
+			<ui:define name="search-form">
+				
+				<p:panel>
+					<h3>Şubeler: </h3>
+				</p:panel>
+				<p:layout style="width:1000px;height:1000px;">
+				
+					<p:layoutUnit position="right" width="250" resizable="true" minWidth="50" maxWidth="200">	
+						<p:panel id="panel" header="Kullanıcı Girişi" style="margin-bottom:10px;">
+							<p:messages />
+							<h:panelGrid columns="3">
+								<h:outputLabel for="uyeAdi" value="Kullanıcı adı: *" />
+								<h:inputText id="uyeAdi" value="#{login.customerId}"	label="uyeAdi">
+									<f:validateLength minimum="2" />
+								</h:inputText>
+								<p:message for="uyeAdi" />
+					
+								<h:outputLabel for="sifre" value="Şifre: *" />
+								<!-- <h:inputSecret id="sifre" value="#{login.password}" label="Şifre" inputType="hidden"/>  -->
+								
+								<p:keyboard value="#{login.password}" label="Şifre" id="sifre" password="true"/>
+								
+								<p:message for="sifre" />
+							</h:panelGrid>
+						</p:panel>
+			
+						<p:commandButton value="Giriş yap" action="#{login.checkUserLogin}" ajax="false">
+							
+						</p:commandButton>
+						
+						<p:commandButton value="Yeni kullanıcı kaydı" action="p_user_register.jsf" ajax="false"/>
+						
+						<p:commandButton value="Şifremi unuttum" action="p_musteri_sifremi_unuttum.jsf" ajax="false"/>
+					
+						<!-- <p:panel><h3>Her şey daha kolay</h3></p:panel> -->
+					
+						<h2><h:outputText value="#{login.message}" id="ajaxMessage" rendered="#{login.renderState}"/></h2>	
+					</p:layoutUnit>
+				
+					<p:layoutUnit position="center">
+						<p:dataTable var="sube" value="#{subeBean.subeler}" paginator="true"
+							rows="10">
+		
+							<f:facet name="header">
+					            Şubeler
+					        </f:facet>
+		
+							<p:column sortBy="#{sube.subeId}">
+								<f:facet name="header">
+									<h:outputText value="Şube Kodu" />
+								</f:facet>
+								<h:outputText value="#{sube.subeId}" />
+							</p:column>
+		
+							<p:column sortBy="#{sube.subeAdi}">
+								<f:facet name="header">
+									<h:outputText value="Şube Adı" />
+								</f:facet>
+								<h:outputText value="#{sube.subeAdi}" />
+							</p:column>
+		
+							<p:column sortBy="#{sube.subeSehir}">
+								<f:facet name="header">
+									<h:outputText value="Şube Şehri" />
+								</f:facet>
+								<h:outputText value="#{sube.subeSehir}" />
+							</p:column>
+		
+							<p:column sortBy="#{sube.subeAssests}">
+								<f:facet name="header">
+									<h:outputText value="Şube subeAssests" />
+								</f:facet>
+								<h:outputText value="#{sube.subeAssests}" />
+							</p:column>
+		
+							<p:column style="width:32px">
+								<p:commandButton update="display" oncomplete="carDialog.show()"
+									image="ui-icon ui-icon-search">
+									<f:setPropertyActionListener value="#{sube}"
+										target="#{subeBean.selectedSube}" />
+								</p:commandButton>
+							</p:column>
+		
+						</p:dataTable>
+					</p:layoutUnit>
+					
+					
+					
+				</p:layout>
+				
+		</ui:define>
+		
+        
+
+		<ui:define name="dialogWindow">
+			<p:dialog header="Şube ayrıntısı" widgetVar="carDialog"
+				resizable="false" width="200" showEffect="explode"
+				hideEffect="explode">
+
+				<h:panelGrid id="display" columns="2" cellpadding="4">
+					<h:outputText value="ID:" />
+					<h:outputText value="#{subeBean.selectedSube.subeId}" />
+
+					<h:outputText value="Adı:" />
+					<h:outputText value="#{subeBean.selectedSube.subeAdi}" />
+
+					<h:outputText value="Şehri:" />
+					<h:outputText value="#{subeBean.selectedSube.subeSehir}" />
+
+					<h:outputText value="Varlığı" />
+					<h:outputText value="#{subeBean.selectedSube.subeAssests}" />
+				</h:panelGrid>
+			</p:dialog>
+		</ui:define>
+	
+	</ui:composition>
+	
+	
+</h:body>
+</html>
